@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">SendMeal</string>
+    <string name="txtNombre">Nombre</string>
+    <string name="txtClave">Contraseña</string>
+    <string name="txtClave2">Repetir contraseña</string>
+    <string name="txtCorreo">Correo electrónico</string>
+    <string name="txtTarjeta">Tarjeta de crédito</string>
+    <string name="txtTipoCuenta">Tipo de cuenta</string>
+    <string name="txtCredito">Crédito inicial</string>
+    <string name="txtNotificar">Notificar por correo electrónico</string>
+    <string name="txtVendedor">Es vendedor</string>
+    <string name="txtAlias">Alias CBU</string>
+    <string name="txtCBU">CBU</string>
+
 </resources>
