@@ -44,5 +44,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tipoCuenta = ((RadioButton) findViewById(groupTipoCuenta.getCheckedRadioButtonId())).getText().toString();
 
     }
-    
+
 }
