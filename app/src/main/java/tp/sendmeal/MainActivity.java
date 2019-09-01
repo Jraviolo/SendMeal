@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import java.util.Date;
 
@@ -41,8 +42,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ccv = (EditText)findViewById(R.id.AMeditDig);
         vtoTarjeta = (EditText)findViewById(R.id.AMeditVto);
         groupTipoCuenta = (RadioGroup) findViewById(R.id.AMTipoCuenta);
-        tipoCuenta = ((RadioButton) findViewById(groupTipoCuenta.getCheckedRadioButtonId())).getText().toString();
+        /** tipoCuenta = ((RadioButton) findViewById(groupTipoCuenta.getCheckedRadioButtonId())).getText().toString();**/
 
+
+        Toast toast1 = Toast.makeText(getApplicationContext(),
+                        "Toast por defecto", Toast.LENGTH_SHORT);
+
+        toast1.show();
     }
 
 }

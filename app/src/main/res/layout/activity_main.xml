@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,16 +8,26 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Registrar usuario" />
+        android:text="Registrar usuario"
+        android:textColor="@color/colorTitulo"
+        android:textSize="@dimen/dimTitulo"/>
 
     <TextView
         android:id="@+id/AMtxtNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtNombre" />
+        android:text="@string/txtNombre"
+        android:textColor="@color/colotEtiquetas"
+        android:textSize="@dimen/dimEtiquetas"/>
 
     <EditText
         android:id="@+id/AMeditNombre"
@@ -30,7 +41,9 @@
         android:id="@+id/AMtxtClave"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtClave" />
+        android:text="@string/txtClave"
+        android:textColor="@color/colotEtiquetas"
+        android:textSize="@dimen/dimEtiquetas"/>
 
     <EditText
         android:id="@+id/AMeditClave"
@@ -43,7 +56,9 @@
         android:id="@+id/AMtxtClave2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtClave2" />
+        android:text="@string/txtClave2"
+        android:textColor="@color/colotEtiquetas"
+        android:textSize="@dimen/dimEtiquetas"/>
 
     <EditText
         android:id="@+id/AMeditClave2"
@@ -56,7 +71,9 @@
         android:id="@+id/AMtxtCorreo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtCorreo" />
+        android:text="@string/txtCorreo"
+        android:textColor="@color/colotEtiquetas"
+        android:textSize="@dimen/dimEtiquetas"/>
 
     <EditText
         android:id="@+id/AMeditCorreo"
@@ -70,7 +87,9 @@
         android:id="@+id/AMtxtTarjeta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtTarjeta" />
+        android:text="@string/txtTarjeta"
+        android:textColor="@color/colotEtiquetas"
+        android:textSize="@dimen/dimEtiquetas"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -83,7 +102,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
-            android:text="Numero"/>
+            android:hint="Numero"/>
 
         <EditText
             android:id="@+id/AMeditDig"
@@ -91,7 +110,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="number"
-            android:text="CCV"/>
+            android:hint="CCV" />
 
         <EditText
             android:id="@+id/AMeditVto"
@@ -99,7 +118,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="date"
-            android:text="MM/AA"/>
+            android:hint="MM/AA"/>
     </LinearLayout>
 
 
@@ -114,7 +133,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/txtTipoCuenta" />
+            android:text="@string/txtTipoCuenta"
+            android:textColor="@color/colotEtiquetas"
+            android:textSize="@dimen/dimEtiquetas"/>
 
         <RadioButton
             android:id="@+id/AMoptBase"
@@ -144,7 +165,9 @@
         android:id="@+id/AMtxtCredito"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtCredito" />
+        android:text="@string/txtCredito"
+        android:textColor="@color/colotEtiquetas"
+        android:textSize="@dimen/dimEtiquetas"/>
 
     <SeekBar
         android:id="@+id/AMseekCredito"
@@ -156,14 +179,17 @@
         android:id="@+id/AMtoggleNotificar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="NO ENVIAR NOTIFICACIONES AL MAIL"
+        android:textOff="@string/txtNoNotificar"
+        android:textOn="@string/txtNotificar"
      />
 
     <Switch
         android:id="@+id/AMswitchVendedor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtVendedor" />
+        android:text="@string/txtVendedor"
+        android:textColor="@color/colotEtiquetas"
+        android:textSize="@dimen/dimEtiquetas"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -175,7 +201,9 @@
             android:id="@+id/AMtxtAlias"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/txtAlias" />
+            android:text="@string/txtAlias"
+            android:textColor="@color/colotEtiquetas"
+            android:textSize="@dimen/dimEtiquetas"/>
 
         <EditText
             android:id="@+id/AMeditAlias"
@@ -189,7 +217,9 @@
             android:id="@+id/AMtextCBU"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/txtCBU" />
+            android:text="@string/txtCBU"
+            android:textColor="@color/colotEtiquetas"
+            android:textSize="@dimen/dimEtiquetas"/>
 
         <EditText
             android:id="@+id/AMeditCBU"
@@ -205,12 +235,14 @@
         android:id="@+id/AMcheckCondiciones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Acepta términos y condiciones" />
+        android:text="Acepta términos y condiciones"
+        android:textColor="@color/colotEtiquetas"
+        android:textSize="@dimen/dimEtiquetas"/>
 
     <Button
         android:id="@+id/AMbtnRegistrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Registrar" />
-
 </LinearLayout>
+</ScrollView>

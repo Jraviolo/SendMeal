@@ -8,6 +8,7 @@
     <string name="txtTipoCuenta">Tipo de cuenta</string>
     <string name="txtCredito">Crédito inicial</string>
     <string name="txtNotificar">Notificar por correo electrónico</string>
+    <string name="txtNoNotificar">No notificar por correo electrónico</string>
     <string name="txtVendedor">Es vendedor</string>
     <string name="txtAlias">Alias CBU</string>
     <string name="txtCBU">CBU</string>
