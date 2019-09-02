@@ -12,5 +12,10 @@
     <string name="txtVendedor">Es vendedor</string>
     <string name="txtAlias">Alias CBU</string>
     <string name="txtCBU">CBU</string>
+    <string name="txtCondiciones">Acepta términos y condiciones</string>
+    <string name="txtRegistrar">Registrar</string>
+
+    <string name="errorCampo">Campo obligatorio</string>
+    <string name="errorClave">Las contraseñas no coinciden</string>
 
 </resources>

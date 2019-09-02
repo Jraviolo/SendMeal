@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -42,12 +43,66 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ccv = (EditText)findViewById(R.id.AMeditDig);
         vtoTarjeta = (EditText)findViewById(R.id.AMeditVto);
         groupTipoCuenta = (RadioGroup) findViewById(R.id.AMTipoCuenta);
-        /** tipoCuenta = ((RadioButton) findViewById(groupTipoCuenta.getCheckedRadioButtonId())).getText().toString();**/
+        /** ESTO NO ANDA, NO VI XQ
+         * tipoCuenta = ((RadioButton) findViewById(groupTipoCuenta.getCheckedRadioButtonId())).getText().toString();**/
+
+        if(validarCampos()){
+            //LO REGISTRA
+        }
 
 
-        Toast toast1 = Toast.makeText(getApplicationContext(),
-                        "Toast por defecto", Toast.LENGTH_SHORT);
 
+
+    }
+
+    public boolean validarCampos(){
+
+        if( nombre.getText().toString().isEmpty()) {
+            showToast("El campo nombre es obligatorio");
+            return false;
+        }
+        if( clave.getText().toString().isEmpty()) {
+            showToast("Ingrese una contraseña");
+            return false;
+        }else {
+            if (!clave.getText().toString().equals(clave2.getText().toString())){
+                showToast("Las contraseñas no coinciden");
+                return false;
+            }
+        }
+        if( correo.getText().toString().isEmpty()) {
+            showToast("El campo correo es obligatorio");
+            return false;
+        } else {
+            if(!isValidEmail( correo.getText().toString()) ) {
+                showToast("Ingrese un correo valido");
+                return false;
+            }
+        }
+        if( tarjeta.getText().toString().isEmpty()) {
+            showToast("Ingrese un numero de tarjeta");
+            return false;
+        }
+        if( ccv.getText().toString().isEmpty()) {
+            showToast("Ingrese un ccv");
+            return false;
+        }
+        if( vtoTarjeta.getText().toString().isEmpty() ) {
+            showToast("Ingrese un vencimiento de tarjeta valido");
+            return false;
+            //falta validar fecha
+        }
+        //VALIDAR TIPO DE CUENTA
+        if( !((CheckBox)findViewById(R.id.AMcheckCondiciones)).isChecked()) showToast("Debe acepar los terminos y condiciones");
+        return true;
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
+
+    public void showToast(String txtToast){
+        Toast toast1 = Toast.makeText(getApplicationContext(),txtToast, Toast.LENGTH_SHORT);
         toast1.show();
     }
 

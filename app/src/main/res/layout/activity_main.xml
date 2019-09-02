@@ -235,14 +235,14 @@
         android:id="@+id/AMcheckCondiciones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Acepta términos y condiciones"
+        android:text="@string/txtCondiciones"
         android:textColor="@color/colotEtiquetas"
-        android:textSize="@dimen/dimEtiquetas"/>
+        android:textSize="@dimen/dimEtiquetas" />
 
     <Button
         android:id="@+id/AMbtnRegistrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Registrar" />
+        android:text="@string/txtRegistrar" />
 </LinearLayout>
 </ScrollView>
