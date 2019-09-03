@@ -7,14 +7,16 @@ import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
     private EditText nombre;
     private EditText clave;
     private EditText clave2;
@@ -22,8 +24,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText tarjeta;
     private EditText ccv;
     private EditText vtoTarjeta;
+    private EditText aliasCBU;
+    private EditText CBU;
     private RadioGroup groupTipoCuenta;
     private String tipoCuenta;
+    private Switch vendedor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         Button btnRegistrar = (Button) findViewById(R.id.AMbtnRegistrar);
         btnRegistrar.setOnClickListener(this);
+        vendedor = (Switch) findViewById(R.id.AMswitchVendedor);
+        vendedor.setOnCheckedChangeListener(this);
     }
 
     @Override
@@ -43,16 +50,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ccv = (EditText)findViewById(R.id.AMeditDig);
         vtoTarjeta = (EditText)findViewById(R.id.AMeditVto);
         groupTipoCuenta = (RadioGroup) findViewById(R.id.AMTipoCuenta);
-        /** ESTO NO ANDA, NO VI XQ
-         * tipoCuenta = ((RadioButton) findViewById(groupTipoCuenta.getCheckedRadioButtonId())).getText().toString();**/
+        vendedor = (Switch) findViewById(R.id.AMswitchVendedor);
+        aliasCBU = (EditText) findViewById(R.id.AMeditAlias);
+        CBU = (EditText) findViewById(R.id.AMeditCBU);
+        // ESTO NO ANDA, NO VI XQ
+        tipoCuenta = ((RadioButton) findViewById(groupTipoCuenta.getCheckedRadioButtonId())).toString();
 
         if(validarCampos()){
             //LO REGISTRA
         }
 
-
-
-
+    }
+@Override
+    public void onCheckedChanged(CompoundButton btnView, boolean isChecked){
+        if(isChecked) {
+            findViewById(R.id.AMlayoutCuenta).setVisibility(View.VISIBLE);
+        }
     }
 
     public boolean validarCampos(){
@@ -92,7 +105,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return false;
             //falta validar fecha
         }
+        if(vendedor.isChecked() && aliasCBU.getText().toString().isEmpty()){
+            showToast("Ingrese el alias de CBU");
+            return false;
+        }
+        if(vendedor.isChecked() && CBU.getText().toString().isEmpty()){
+            showToast("Ingrese su CBU");
+            return false;
+        }
+
+
         //VALIDAR TIPO DE CUENTA
+
+    //    if(vendedor.isChecked()){
+    //        findViewById(R.id.AMlayoutCuenta).setVisibility(View.VISIBLE);
+    //    }
         if( !((CheckBox)findViewById(R.id.AMcheckCondiciones)).isChecked()) showToast("Debe acepar los terminos y condiciones");
         return true;
     }

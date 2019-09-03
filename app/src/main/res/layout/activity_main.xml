@@ -192,6 +192,7 @@
         android:textSize="@dimen/dimEtiquetas"/>
 
     <LinearLayout
+        android:id="@+id/AMlayoutCuenta"
         android:layout_width="match_parent"
         android:layout_height="119dp"
         android:orientation="vertical"
