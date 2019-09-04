@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText aliasCBU;
     private EditText CBU;
     private RadioGroup groupTipoCuenta;
-    private String tipoCuenta;
+    private RadioButton tipoCuenta;
     private Switch vendedor;
 
     @Override
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         aliasCBU = (EditText) findViewById(R.id.AMeditAlias);
         CBU = (EditText) findViewById(R.id.AMeditCBU);
         // ESTO NO ANDA, NO VI XQ
-        tipoCuenta = ((RadioButton) findViewById(groupTipoCuenta.getCheckedRadioButtonId())).toString();
+        tipoCuenta = ((RadioButton) findViewById(groupTipoCuenta.getCheckedRadioButtonId()));
 
         if(validarCampos()){
             //LO REGISTRA
@@ -65,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onCheckedChanged(CompoundButton btnView, boolean isChecked){
         if(isChecked) {
             findViewById(R.id.AMlayoutCuenta).setVisibility(View.VISIBLE);
+        }
+        else{
+            findViewById(R.id.AMlayoutCuenta).setVisibility(View.GONE);
         }
     }
 
@@ -116,10 +119,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         //VALIDAR TIPO DE CUENTA
+/*Esto todavia no anda, hay que buscar como saber si no hay ningun RadioButton seleccionado)
+        if(!((RadioButton) findViewById(groupTipoCuenta.getCheckedRadioButtonId())).isChecked()){
+            showToast("tipo cuenta empty");
+            return false;
+        }
 
-    //    if(vendedor.isChecked()){
-    //        findViewById(R.id.AMlayoutCuenta).setVisibility(View.VISIBLE);
-    //    }
+ */
+/*Esto anda, pero no tiene ninguna funcionalidad todavia*/
+        if(!tipoCuenta.getText().toString().isEmpty()){
+          //  showToast("Tipo Cuenta:"+tipoCuenta.getText().toString());
+        }
+
+
         if( !((CheckBox)findViewById(R.id.AMcheckCondiciones)).isChecked()) showToast("Debe acepar los terminos y condiciones");
         return true;
     }
