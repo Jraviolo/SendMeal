@@ -11,12 +11,13 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.Toast;
 
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
     private EditText nombre;
     private EditText clave;
     private EditText clave2;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RadioGroup groupTipoCuenta;
     private RadioButton tipoCuenta;
     private Switch vendedor;
+    private SeekBar seekCredito;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +38,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         Button btnRegistrar = (Button) findViewById(R.id.AMbtnRegistrar);
         btnRegistrar.setOnClickListener(this);
-        vendedor = (Switch) findViewById(R.id.AMswitchVendedor);
-        vendedor.setOnCheckedChangeListener(this);
-    }
-
-    @Override
-    public void onClick(View view) {
         nombre = (EditText) findViewById(R.id.AMeditNombre);
         clave = (EditText)findViewById(R.id.AMeditClave);
         clave2 = (EditText)findViewById(R.id.AMeditClave2);
@@ -51,10 +47,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         vtoTarjeta = (EditText)findViewById(R.id.AMeditVto);
         groupTipoCuenta = (RadioGroup) findViewById(R.id.AMTipoCuenta);
         vendedor = (Switch) findViewById(R.id.AMswitchVendedor);
+        vendedor.setOnCheckedChangeListener(this);
         aliasCBU = (EditText) findViewById(R.id.AMeditAlias);
         CBU = (EditText) findViewById(R.id.AMeditCBU);
-        // ESTO NO ANDA, NO VI XQ
-        tipoCuenta = ((RadioButton) findViewById(groupTipoCuenta.getCheckedRadioButtonId()));
+        seekCredito = (SeekBar) findViewById(R.id.AMseekCredito);
+        seekCredito.setOnSeekBarChangeListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
 
         if(validarCampos()){
             //LO REGISTRA
@@ -70,8 +71,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             findViewById(R.id.AMlayoutCuenta).setVisibility(View.GONE);
         }
     }
+@Override
+    public void onProgressChanged(SeekBar seekBar, int progress,
+                                  boolean fromUser) {
+    }
+
+    public void onStartTrackingTouch(SeekBar seekBar) {}
+
+    public void onStopTrackingTouch(SeekBar seekBar) {}
 
     public boolean validarCampos(){
+
 
         if( nombre.getText().toString().isEmpty()) {
             showToast("El campo nombre es obligatorio");
@@ -108,6 +118,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return false;
             //falta validar fecha
         }
+        if( groupTipoCuenta.getCheckedRadioButtonId() == -1){
+            showToast("Seleccione el tipo de cuenta");
+            return false;
+        }
         if(vendedor.isChecked() && aliasCBU.getText().toString().isEmpty()){
             showToast("Ingrese el alias de CBU");
             return false;
@@ -116,21 +130,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             showToast("Ingrese su CBU");
             return false;
         }
-
-
-        //VALIDAR TIPO DE CUENTA
-/*Esto todavia no anda, hay que buscar como saber si no hay ningun RadioButton seleccionado)
-        if(!((RadioButton) findViewById(groupTipoCuenta.getCheckedRadioButtonId())).isChecked()){
-            showToast("tipo cuenta empty");
-            return false;
-        }
-
- */
-/*Esto anda, pero no tiene ninguna funcionalidad todavia*/
-        if(!tipoCuenta.getText().toString().isEmpty()){
-          //  showToast("Tipo Cuenta:"+tipoCuenta.getText().toString());
-        }
-
 
         if( !((CheckBox)findViewById(R.id.AMcheckCondiciones)).isChecked()) showToast("Debe acepar los terminos y condiciones");
         return true;
