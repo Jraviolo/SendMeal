@@ -18,4 +18,7 @@
     <string name="errorCampo">Campo obligatorio</string>
     <string name="errorClave">Las contraseñas no coinciden</string>
 
+    <string name="Resgistrarme">Registrarme</string>
+    <string name="CrearItem">Crear item</string>
+    <string name="ListaItems">Lista de items</string>
 </resources>
