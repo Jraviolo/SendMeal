@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".CrearItem"></activity>
+        <activity android:name=".AltaPlato"></activity>
+        <activity android:name=".CrearItem" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Home">
             <intent-filter>

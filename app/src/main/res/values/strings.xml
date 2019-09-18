@@ -21,4 +21,12 @@
     <string name="Resgistrarme">Registrarme</string>
     <string name="CrearItem">Crear item</string>
     <string name="ListaItems">Lista de items</string>
+
+    <string name="txtIdPlato"> ID plato</string>
+    <string name="txtNombrePlato">Nombre</string>
+    <string name="txtDescripcionPlato">Descripcion</string>
+    <string name="txtPrecioPlato">Precio</string>
+    <string name="txtCaloriasPlato">Calorias</string>
+    <string name="btnGuardarPlato">Guardar plato</string>
+
 </resources>

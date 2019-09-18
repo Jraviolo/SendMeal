@@ -31,7 +31,8 @@ public class Home extends AppCompatActivity  {
                 startActivity(i1);
                 return true;
             case R.id.MenuCrearItem:
-
+                Intent i2 = new Intent(this,AltaPlato.class);
+                startActivity(i2);
                 return true;
             case R.id.MenuListaItems:
 
