@@ -1,9 +1,12 @@
 package tp.sendmeal;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -38,6 +41,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         Button btnRegistrar = (Button) findViewById(R.id.AMbtnRegistrar);
         btnRegistrar.setOnClickListener(this);
+
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbarRegistro));
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         nombre = (EditText) findViewById(R.id.AMeditNombre);
         clave = (EditText)findViewById(R.id.AMeditClave);
         clave2 = (EditText)findViewById(R.id.AMeditClave2);
@@ -52,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         CBU = (EditText) findViewById(R.id.AMeditCBU);
         seekCredito = (SeekBar) findViewById(R.id.AMseekCredito);
         seekCredito.setOnSeekBarChangeListener(this);
+
     }
 
     @Override
@@ -144,4 +153,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toast1.show();
     }
 
+    @Override
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

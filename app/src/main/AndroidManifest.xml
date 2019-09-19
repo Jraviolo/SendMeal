@@ -10,8 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".AltaPlato"></activity>
-        <activity android:name=".CrearItem" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".CrearItem"
+            android:parentActivityName=".Home"/>
+        <activity android:name=".MainActivity"
+            android:parentActivityName=".Home"/>
         <activity android:name=".Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -11,10 +11,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical"
+        >
 
 
-    <TextView
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarRegistro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:title="@string/txtRegistrarUsuario"/>
+
+        <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Registrar usuario"
@@ -245,5 +255,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/txtRegistrar" />
-</LinearLayout>
+
+    </LinearLayout>
 </ScrollView>

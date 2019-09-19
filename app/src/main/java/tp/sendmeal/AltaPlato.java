@@ -1,8 +1,11 @@
 package tp.sendmeal;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +27,10 @@ public class AltaPlato extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.activity_alta_plato);
         Button btnGuardar = (Button) findViewById(R.id.APbtnGuardar);
         btnGuardar.setOnClickListener(this);
+
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbarAltaPlato));
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         idPlato = (EditText) findViewById(R.id.APeditId);
         nombre = (EditText) findViewById(R.id.APeditNombre);
@@ -78,5 +85,16 @@ public class AltaPlato extends AppCompatActivity implements View.OnClickListener
     public void showToast(String txtToast){
         Toast toast1 = Toast.makeText(getApplicationContext(),txtToast, Toast.LENGTH_SHORT);
         toast1.show();
+    }
+
+    @Override
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
