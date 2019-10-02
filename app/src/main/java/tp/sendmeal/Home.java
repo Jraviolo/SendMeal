@@ -35,7 +35,8 @@ public class Home extends AppCompatActivity  {
                 startActivity(i2);
                 return true;
             case R.id.MenuListaItems:
-
+                Intent i3 = new Intent(this, ListaPlatos.class);
+                startActivity(i3);
                 return true;
             default:
                 Toast.makeText(this, "default switch", Toast.LENGTH_LONG).show();
