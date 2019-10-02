@@ -3,6 +3,7 @@ package tp.sendmeal;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,8 +26,8 @@ public class ListaPlatos extends AppCompatActivity {
         plato1.setPrecio(148.00);
         plato1.setTitulo("Hamburguesa1");
         Plato plato2 = new Plato();
-        plato1.setPrecio(200.00);
-        plato1.setTitulo("Hamburguesa2");
+        plato2.setPrecio(200.00);
+        plato2.setTitulo("Hamburguesa2");
         listaP.add(plato1);
         listaP.add(plato2);
 
