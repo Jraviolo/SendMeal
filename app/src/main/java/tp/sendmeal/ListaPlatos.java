@@ -3,22 +3,23 @@ package tp.sendmeal;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.cardview.widget.CardView;
 import java.util.ArrayList;
 
 import tp.sendmeal.domain.Plato;
 
 public class ListaPlatos extends AppCompatActivity {
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    //private RecyclerView.Adapter mAdapter;
+    private PlatoRecyclerAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.fila_plato);
 
         ArrayList<Plato> listaP = new ArrayList<>();
@@ -31,7 +32,7 @@ public class ListaPlatos extends AppCompatActivity {
         listaP.add(plato1);
         listaP.add(plato2);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.card_view);
+        mRecyclerView = (RecyclerView) findViewById(R.id.CardRecycler);
         mRecyclerView.setHasFixedSize(true);
 
         mLayoutManager = new LinearLayoutManager(this);
