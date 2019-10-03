@@ -3,6 +3,8 @@ package tp.sendmeal;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,7 +13,7 @@ import java.util.List;
 
 import tp.sendmeal.domain.Plato;
 
-public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoViewHolder> {
+public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdapter.PlatoViewHolder> {
     private List<Plato> mDataSet;
 
 
@@ -28,7 +30,7 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoViewHolder> 
     @Override
     public void onBindViewHolder(PlatoViewHolder holder, int position) {
         Plato plato = mDataSet.get(position);
-        holder.imagenPlato.setImageResource(android.R.drawable.gallery_thumb);
+        holder.imagenPlato.setImageResource(android.R.drawable.star_big_on);
         holder.nombrePlato.setText(plato.getTitulo());
         holder.precio.setText(plato.getPrecio().toString());
 
@@ -37,6 +39,21 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoViewHolder> 
     @Override
     public int getItemCount() {
         return mDataSet.size();
+    }
+
+    public class PlatoViewHolder extends RecyclerView.ViewHolder {
+        ImageView imagenPlato;
+        TextView nombrePlato;
+        TextView precio;
+
+        PlatoViewHolder(View base){
+            super(base);
+            this.imagenPlato = (ImageView) base.findViewById(R.id.FPimagen);
+            this.nombrePlato = (TextView) base.findViewById(R.id.FPnombrePlato);
+            this.precio = (TextView) base.findViewById(R.id.FPprecio);
+
+        }
+
     }
 
 }

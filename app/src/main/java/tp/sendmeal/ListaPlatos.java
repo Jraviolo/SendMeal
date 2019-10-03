@@ -20,7 +20,7 @@ public class ListaPlatos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.fila_plato);
+        setContentView(R.layout.recycler);
 
         ArrayList<Plato> listaP = new ArrayList<>();
         Plato plato1 = new Plato();
@@ -31,6 +31,14 @@ public class ListaPlatos extends AppCompatActivity {
         plato2.setTitulo("Hamburguesa2");
         listaP.add(plato1);
         listaP.add(plato2);
+        Plato plato3 = new Plato();
+        plato3.setPrecio(220.00);
+        plato3.setTitulo("Hamburguesa3");
+        listaP.add(plato3);
+        Plato plato4 = new Plato();
+        plato4.setPrecio(210.00);
+        plato4.setTitulo("Hamburguesa4");
+        listaP.add(plato4);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.CardRecycler);
         mRecyclerView.setHasFixedSize(true);
@@ -39,5 +47,7 @@ public class ListaPlatos extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new PlatoRecyclerAdapter(listaP);
         mRecyclerView.setAdapter(mAdapter);
+
     }
+
 }
