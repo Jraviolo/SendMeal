@@ -10,7 +10,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="6dp"
     android:orientation="vertical"
-    card_view:cardBackgroundColor="@color/coloBlanco"
+    card_view:cardBackgroundColor="@color/coloCVFondo"
     card_view:cardCornerRadius="5dp">
 
     <LinearLayout
@@ -41,7 +41,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/dimPrecioPlato"
-            android:textColor="@color/colotEtiquetas"
+            android:textColor="@color/colorCVPrecio"
 
             android:paddingLeft="20dp"
             android:paddingBottom="5dp"

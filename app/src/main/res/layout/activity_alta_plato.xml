@@ -21,7 +21,8 @@
         android:id="@+id/APtxtId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtIdPlato" />
+        android:text="@string/txtIdPlato"
+        android:textColor="@color/colotEtiquetas"/>
 
     <EditText
         android:id="@+id/APeditId"
@@ -34,7 +35,8 @@
         android:id="@+id/APtxtNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtNombrePlato" />
+        android:text="@string/txtNombrePlato"
+        android:textColor="@color/colotEtiquetas"/>
 
     <EditText
         android:id="@+id/APeditNombre"
@@ -48,7 +50,8 @@
         android:id="@+id/APtxtDescripcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtDescripcionPlato" />
+        android:text="@string/txtDescripcionPlato"
+        android:textColor="@color/colotEtiquetas"/>
 
     <EditText
         android:id="@+id/APeditDescripcion"
@@ -62,7 +65,8 @@
         android:id="@+id/APtxtPrecio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtPrecioPlato" />
+        android:text="@string/txtPrecioPlato"
+        android:textColor="@color/colotEtiquetas"/>
 
     <EditText
         android:id="@+id/APeditPrecio"
@@ -75,7 +79,8 @@
         android:id="@+id/APtxtCalorias"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/txtCaloriasPlato" />
+        android:text="@string/txtCaloriasPlato"
+        android:textColor="@color/colotEtiquetas"/>
 
     <EditText
         android:id="@+id/APeditCalorias"

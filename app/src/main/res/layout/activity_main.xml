@@ -24,12 +24,12 @@
             android:theme="?attr/actionBarTheme"
             app:title="@string/txtRegistrarUsuario"/>
 
-        <TextView
+       <!-- <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Registrar usuario"
         android:textColor="@color/colorTitulo"
-        android:textSize="@dimen/dimTitulo"/>
+        android:textSize="@dimen/dimTitulo"/>-->
 
     <TextView
         android:id="@+id/AMtxtNombre"

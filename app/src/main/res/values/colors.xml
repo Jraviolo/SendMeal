@@ -4,8 +4,8 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorTitulo">#EC32E0</color>
-    <color name="colotEtiquetas">#000000</color>
+    <color name="colotEtiquetas">#FFFFFF</color>
 
-
-    <color name="coloBlanco">#FFFFFF</color>
+    <color name="colorCVPrecio">#000000</color>
+    <color name="coloCVFondo">#FFFFFF</color>
 </resources>
