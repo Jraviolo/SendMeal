@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
@@ -48,7 +50,7 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
         return mDataSet.size();
     }
 
-    public class PlatoViewHolder extends RecyclerView.ViewHolder {
+    public class PlatoViewHolder extends RecyclerView.ViewHolder{
         ImageView imagenPlato;
         TextView nombrePlato;
         TextView precio;
@@ -69,19 +71,15 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
             this.btnEditar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    /*Intent i = new Intent(,AltaPlato.class);
+                    Intent i = new Intent(view.getContext(),AltaPlato.class);
                     i.putExtra("INDICE",(int)btnEditar.getTag());
-                    startActivityForResult(i,CODIGO_LISTA_PLATO);*/
+                    ((Activity)view.getContext()).startActivityForResult(i,CODIGO_LISTA_PLATO);
                 }
             });
 
-            /*this.btnEditar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    System.out.println("Editar: "+btnEditar.getTag().toString());
-                }
-            });*/
+            //aca irian eventos de los otros botones
         }
+        
 
     }
 
