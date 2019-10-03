@@ -53,21 +53,21 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnEliminar"
+                android:id="@+id/FPbtnEliminar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Eliminar" />
 
             <Button
-                android:id="@+id/btnEditar"
+                android:id="@+id/FPbtnEditar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Editar" />
 
             <Button
-                android:id="@+id/btnOferta"
+                android:id="@+id/FPbtnOferta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
