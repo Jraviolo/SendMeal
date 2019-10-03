@@ -1,5 +1,6 @@
 package tp.sendmeal;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.net.URI;
 import java.util.List;
 
 import tp.sendmeal.domain.Plato;
@@ -30,9 +32,9 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
     @Override
     public void onBindViewHolder(PlatoViewHolder holder, int position) {
         Plato plato = mDataSet.get(position);
-        holder.imagenPlato.setImageResource(android.R.drawable.star_big_on);
+        holder.imagenPlato.setImageResource(R.drawable.ha);
         holder.nombrePlato.setText(plato.getTitulo());
-        holder.precio.setText(plato.getPrecio().toString());
+        holder.precio.setText("$ "+plato.getPrecio().toString());
 
     }
 

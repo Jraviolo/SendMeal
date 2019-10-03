@@ -2,4 +2,7 @@
 <resources>
     <dimen name="dimTitulo">30dp</dimen>
     <dimen name="dimEtiquetas">15dp</dimen>
+
+    <dimen name="dimNombrePlato">20dp</dimen>
+    <dimen name="dimPrecioPlato">15dp</dimen>
 </resources>

@@ -2,7 +2,9 @@ package tp.sendmeal;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.cardview.widget.CardView;
@@ -21,6 +23,10 @@ public class ListaPlatos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.recycler);
+
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbarListItems));
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         ArrayList<Plato> listaP = new ArrayList<>();
         Plato plato1 = new Plato();
