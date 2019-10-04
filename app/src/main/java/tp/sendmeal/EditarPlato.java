@@ -1,5 +1,6 @@
 package tp.sendmeal;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -83,6 +84,10 @@ public class EditarPlato extends AppCompatActivity implements View.OnClickListen
             plato.setCalorias(Integer.parseInt(calorias.getText().toString()));
 
             //FALTA VOLVER
+
+            Intent i = new Intent();
+            setResult(RESULT_OK,i);
+            finish();
 
         }
     }

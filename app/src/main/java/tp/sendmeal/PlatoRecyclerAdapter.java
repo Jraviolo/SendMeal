@@ -23,7 +23,7 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
 
     public List<Plato> mDataSet;
 
-    private static final int CODIGO_LISTA_PLATO = 987;
+    public static final int CODIGO_LISTA_PLATO = 100;
 
     public PlatoRecyclerAdapter (List<Plato> myDataSet){
         mDataSet = myDataSet;
@@ -58,6 +58,8 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
 
         //aca irian eventos de los otros botones
     }
+
+
 
     @Override
     public int getItemCount() {
