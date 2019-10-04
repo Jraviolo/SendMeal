@@ -20,9 +20,10 @@ import static androidx.core.app.ActivityCompat.startActivityForResult;
 import static androidx.core.content.ContextCompat.startActivity;
 
 public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdapter.PlatoViewHolder> {
+
     public List<Plato> mDataSet;
 
-
+    private static final int CODIGO_LISTA_PLATO = 987;
 
     public PlatoRecyclerAdapter (List<Plato> myDataSet){
         mDataSet = myDataSet;
@@ -43,6 +44,19 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
 
         //define que elemento del array es
         holder.btnEditar.setTag(position);
+        holder.btnEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String indice=view.getTag().toString();
+
+                Intent i = new Intent(view.getContext(),EditarPlato.class);
+                i.putExtra("INDICE",indice);
+                ((Activity)view.getContext()).startActivityForResult(i,CODIGO_LISTA_PLATO);
+            }
+        });
+
+        //aca irian eventos de los otros botones
     }
 
     @Override
@@ -56,8 +70,8 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
         TextView precio;
 
         Button btnEditar;
-
-        private static final int CODIGO_LISTA_PLATO = 987;
+        Button btnEliminar;
+        Button btnOferta;
 
         PlatoViewHolder(View base){
             super(base);
@@ -66,20 +80,10 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
             this.precio = (TextView) base.findViewById(R.id.FPprecio);
 
             this.btnEditar=(Button) base.findViewById(R.id.FPbtnEditar);
-
-
-            this.btnEditar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent i = new Intent(view.getContext(),AltaPlato.class);
-                    i.putExtra("INDICE",(int)btnEditar.getTag());
-                    ((Activity)view.getContext()).startActivityForResult(i,CODIGO_LISTA_PLATO);
-                }
-            });
-
-            //aca irian eventos de los otros botones
+            this.btnEliminar=(Button) base.findViewById(R.id.FPbtnEliminar);
+            this.btnOferta=(Button) base.findViewById(R.id.FPbtnOferta);
         }
-        
+
 
     }
 
