@@ -2,6 +2,7 @@ package tp.sendmeal;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -59,7 +60,8 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
             }
         });
 
-        //aca irian eventos de los otros botones
+
+        /* Opcion ELIMINAR */
 
         holder.btnEliminar.setTag(position);
         holder.btnEliminar.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +91,34 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
                 dialog.show();
             }
             }
+        );
+
+        /* Opcion OFERTA */
+
+        holder.btnOferta.setTag(position);
+        holder.btnOferta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final String indice=view.getTag().toString();
+                final Context ct = view.getContext();
+                Runnable r = new Runnable() {
+                    @Override
+                    public void run() {
+                        try{
+                            Thread.currentThread().sleep(10000);
+                        } catch (InterruptedException e){
+                            e.printStackTrace();
+                        }
+                        Intent i = new Intent(ct,OfertaPlato.class);
+                        i.setAction(OfertaReceiver.EVENTO1);
+                        i.putExtra("INDICE", indice);
+                        ct.sendBroadcast(i);
+                    }
+                };
+                Thread t1 = new Thread(r);
+                t1.start();
+            }
+        }
         );
 
 
