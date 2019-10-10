@@ -1,6 +1,8 @@
 package tp.sendmeal;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,8 +39,8 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
     }
 
     @Override
-    public void onBindViewHolder(PlatoViewHolder holder, int position) {
-        Plato plato = mDataSet.get(position);
+    public void onBindViewHolder(PlatoViewHolder holder, final int position) {
+        final Plato plato = mDataSet.get(position);
         holder.imagenPlato.setImageResource(R.drawable.ha);
         holder.nombrePlato.setText(plato.getTitulo());
         holder.precio.setText("$ "+plato.getPrecio().toString());
@@ -57,6 +60,38 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
         });
 
         //aca irian eventos de los otros botones
+
+        holder.btnEliminar.setTag(position);
+        holder.btnEliminar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setMessage("Desea eliminar el plato \" "+plato.getTitulo()+"\"")
+                        .setTitle("Eliminar Plato")
+                        .setPositiveButton("Aceptar",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dlgInt, int i) {
+                                        mDataSet.remove(position);
+                                        notifyDataSetChanged();
+                                        Toast.makeText(builder.getContext(), "El plato fue eliminado", Toast.LENGTH_LONG).show();
+
+                                    }
+                                });
+                builder.setNegativeButton("Cancelar",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dlgInt, int i) {
+                                //Toast.makeText(builder.getContext(), "Cancelado", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+            }
+        );
+
+
     }
 
 
