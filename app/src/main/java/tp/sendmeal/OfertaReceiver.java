@@ -34,6 +34,7 @@ public class OfertaReceiver extends BroadcastReceiver {
         int uniqueInt = (int) (System.currentTimeMillis() & 0xfffffff);
 
         String indice=intent.getStringExtra("INDICE");
+        String nombre=intent.getStringExtra("NOMBRE");
 
         //CREO EL INSTENT DE EDITAR PARA PASARLO A LA NOTIFICACION
         Intent destino = new Intent(context, EditarPlato.class);
@@ -46,7 +47,7 @@ public class OfertaReceiver extends BroadcastReceiver {
                 new NotificationCompat.Builder(context, CHANNEL_ID)
                         .setSmallIcon(R.drawable.ic_whatshot_black_24dp)
                         .setContentTitle("Nuevo plato en oferta")
-                        .setContentText("El plato numero "+indice+" se encuentra en oferta")
+                        .setContentText("El plato "+nombre+" ("+indice+") se encuentra en oferta")
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                         .setContentIntent(pendingIntent)
                         .setAutoCancel(true);

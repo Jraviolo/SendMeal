@@ -113,6 +113,7 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
 
                         Intent i = new Intent();
                         i.putExtra("INDICE", indice);
+                        i.putExtra("NOMBRE",plato.getTitulo());
                         i.setAction(OfertaReceiver.EVENTO1);
                         vie.sendBroadcast(i);
 
