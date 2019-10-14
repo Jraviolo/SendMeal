@@ -10,11 +10,13 @@ public class BroadcastNotification extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
+        System.out.println("HOLA");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recycler);
         BroadcastReceiver br = new OfertaReceiver();
         IntentFilter filtro = new IntentFilter();
         filtro.addAction(OfertaReceiver.EVENTO1);
         getApplication().getApplicationContext().registerReceiver(br,filtro);
+        System.out.println("HOLA 2");
     }
 }

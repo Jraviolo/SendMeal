@@ -50,9 +50,10 @@ public class EditarPlato extends AppCompatActivity implements View.OnClickListen
         }
 
 
+
         //ESTO NO CREO QUE SEA ASI
         int indice2=Integer.parseInt(indice);
-        System.out.println(indice2);
+
         ListaPlatos lp=new ListaPlatos();
         plato = lp.listaP.get(indice2);
 

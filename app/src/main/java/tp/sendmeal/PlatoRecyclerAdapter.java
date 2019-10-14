@@ -100,7 +100,7 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
             @Override
             public void onClick(View view) {
                 final String indice=view.getTag().toString();
-                final View vie = view;
+                final Activity vie = (Activity)view.getContext();
                 Runnable r = new Runnable() {
                     @Override
                     public void run() {
@@ -113,12 +113,9 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
 
                         Intent i = new Intent();
                         i.putExtra("INDICE", indice);
-                        i.putExtra("INDICE2", indice);
-                        System.out.println("LLEGO ACA");
                         i.setAction(OfertaReceiver.EVENTO1);
-                        System.out.println("LLEGO ACA 2");
-                        vie.getContext().sendBroadcast(i);
-                        System.out.println("LLEGO ACA 3");
+                        vie.sendBroadcast(i);
+
                     }
                 };
                 Thread t1 = new Thread(r);

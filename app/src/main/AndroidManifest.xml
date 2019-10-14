@@ -30,7 +30,8 @@
 
         <receiver android:name=".OfertaReceiver" android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.RUN"/>
+
+                <action android:name="SendMeal.EVENTO1_MSG"/>
             </intent-filter>
         </receiver>
     </application>
