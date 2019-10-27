@@ -38,4 +38,6 @@ dependencies {
     //https://developer.android.com/guide/topics/ui/layout/recyclerview
     //implementation 'com.android.support:recyclerview-v7:28.0.0'
     //implementation 'com.android.support:cardview-v7:28.0.0'
+
+    implementation "com.android.support:support-compat:27.1.1"
 }

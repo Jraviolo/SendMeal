@@ -46,5 +46,32 @@
             android:paddingLeft="20dp"
             android:paddingBottom="5dp"
             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/FPbtnEliminar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Eliminar" />
+
+            <Button
+                android:id="@+id/FPbtnEditar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Editar" />
+
+            <Button
+                android:id="@+id/FPbtnOferta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Oferta" />
+        </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>
