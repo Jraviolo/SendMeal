@@ -31,4 +31,7 @@
     <string name="txtCaloriasPlato">Calorias</string>
     <string name="btnGuardarPlato">Guardar plato</string>
 
+
+    <string name="txtBuscarPlato"> Buscar plato</string>
+    <string name="btnBuscarPlato"> Buscar plato</string>
 </resources>
