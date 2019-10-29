@@ -22,6 +22,8 @@
 
         <activity android:name=".EditarPlato"/>
 
+        <activity android:name=".BuscarPlato"/>
+
         <activity android:name=".Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -27,10 +27,10 @@
         android:layout_height="wrap_content"
         android:text="@string/txtNombrePlato" />
 
-    <EditText
-        android:id="@+id/editBuscar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <EditText
+            android:id="@+id/editBuscar"
+            android:layout_width="match_parent"
+            android:layout_height="57dp" />
 
     <Button
         android:id="@+id/btnBuscar"

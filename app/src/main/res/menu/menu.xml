@@ -18,4 +18,9 @@
         android:title="@string/ListaItems"
         android:orderInCategory="3" app:showAsAction="ifRoom">
     </item>
+    <item
+        android:id="@+id/MenuBuscarItem"
+        android:title="@string/BuscarItem"
+        android:orderInCategory="4" app:showAsAction="ifRoom">
+    </item>
 </menu>

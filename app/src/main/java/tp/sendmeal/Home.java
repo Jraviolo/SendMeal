@@ -38,6 +38,10 @@ public class Home extends AppCompatActivity  {
                 Intent i3 = new Intent(this, ListaPlatos.class);
                 startActivity(i3);
                 return true;
+            case R.id.MenuBuscarItem:
+                Intent i4 = new Intent(this, BuscarPlato.class);
+                startActivity(i4);
+                return true;
             default:
                 Toast.makeText(this, "default switch", Toast.LENGTH_LONG).show();
                 return super.onOptionsItemSelected(item);

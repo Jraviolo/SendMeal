@@ -22,6 +22,8 @@
     <string name="Resgistrarme">Registrarme</string>
     <string name="CrearItem">Crear item</string>
     <string name="ListaItems">Lista de items</string>
+    <string name="BuscarItem">Buscar item</string>
+
 
     <string name="txtCrearPlato"> Crear Plato</string>
     <string name="txtIdPlato"> ID plato</string>

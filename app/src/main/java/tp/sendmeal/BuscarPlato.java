@@ -2,6 +2,7 @@ package tp.sendmeal;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import tp.sendmeal.dao.PlatoRepository;
 import tp.sendmeal.domain.Plato;
 
 public class BuscarPlato extends AppCompatActivity implements View.OnClickListener{
@@ -32,7 +34,7 @@ public class BuscarPlato extends AppCompatActivity implements View.OnClickListen
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle("Buscar Plato");
 
-
+/*
         String indice="";
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
@@ -45,7 +47,7 @@ public class BuscarPlato extends AppCompatActivity implements View.OnClickListen
             indice= (String) savedInstanceState.getSerializable("INDICE");
         }
 
-
+*/
 
 
     }
@@ -55,6 +57,8 @@ public class BuscarPlato extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View view) {
 
+        //HACER LOGICA BUSQUEDA
+     //   PlatoRepository.getInstance().buscarPlato(plato,miHandler);
 
 
     }
