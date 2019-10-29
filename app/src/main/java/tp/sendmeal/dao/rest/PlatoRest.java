@@ -12,15 +12,18 @@ import retrofit2.http.Path;
 import tp.sendmeal.domain.Plato;
 
 public interface PlatoRest {
-    @GET("plato/{nombre}")
+    @GET("platos/{nombre}")
     Call<List<Plato>> buscarPlato(@Path("nombre") String nombre);
 
-    @DELETE ("plato/{id}")
+    @GET("platos/")
+    Call<List<Plato>> buscarTodos();
+
+    @DELETE ("platos/{id}")
     Call<Void> borrar(@Path("id") Integer id);
 
-    @PUT("plato/{id}")
+    @PUT("platos/{nombre}")
     Call<Plato> actualizar(@Path("id") Integer id, @Body Plato plato);
 
-    @POST("plato/")
+    @POST("platos/")
     Call<Plato> crear(@Body Plato plato);
 }

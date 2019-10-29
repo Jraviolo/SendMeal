@@ -4,13 +4,20 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import tp.sendmeal.dao.PlatoRepository;
+import tp.sendmeal.dao.rest.PlatoRest;
 import tp.sendmeal.domain.Plato;
 
 public class AltaPlato extends AppCompatActivity implements View.OnClickListener{
@@ -54,6 +61,7 @@ public class AltaPlato extends AppCompatActivity implements View.OnClickListener
             plato.setPrecio(Double.parseDouble(precio.getText().toString()));
             plato.setCalorias(Integer.parseInt(calorias.getText().toString()));
 
+            PlatoRepository.getInstance().crearPlato(plato, miHandler);
         }
 
     }
@@ -97,4 +105,22 @@ public class AltaPlato extends AppCompatActivity implements View.OnClickListener
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+
+    //PUEDE FALLAR
+
+    Handler miHandler = new Handler(Looper.myLooper()){
+        @Override
+        public void handleMessage(Message msg){
+            Log.d("APP SendMeal","Vuelve al handler"+msg.arg1);
+            switch (msg.arg1){
+                case PlatoRepository._ALTA_PLATO:
+                case PlatoRepository._UPDATE_PLATO:
+                    Intent i = new Intent(AltaPlato.this,ListaPlatos.class);
+                    startActivity(i);
+                    break;
+            }
+        }
+    };
 }
