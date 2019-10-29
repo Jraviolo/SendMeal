@@ -75,6 +75,7 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
                                     @Override
                                     public void onClick(DialogInterface dlgInt, int i) {
                                         mDataSet.remove(position);
+
                                         notifyDataSetChanged();
                                         Toast.makeText(builder.getContext(), "El plato fue eliminado", Toast.LENGTH_LONG).show();
 

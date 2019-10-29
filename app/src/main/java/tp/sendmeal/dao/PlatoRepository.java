@@ -84,13 +84,16 @@ public class PlatoRepository {
     }
 
     public void listarPlatos(final Handler h){
+        Log.d("APP SendMeal", "ENTRO A LISTARPLATOS");
         Call<List<Plato>> llamada = this.platoRest.buscarTodos();
+        Log.d("APP SendMeal", "DESPUES DE BUSCARTODOS");
         llamada.enqueue(new Callback<List<Plato>>() {
             @Override
             public void onResponse(Call<List<Plato>> call, Response<List<Plato>> response) {
                 if(response.isSuccessful()){
                     listaPlatos.clear();
                     listaPlatos.addAll(response.body());
+                    Log.d("APP SendMeal", "DESPUES DE ADDALL");
                     Message m = new Message();
                     m.arg1 = _CONSULTA_PLATO;
                     h.sendMessage(m);
@@ -107,7 +110,80 @@ public class PlatoRepository {
     }
 
 
+    public void borrarPlato(final Plato plato, final Handler h){
+        Call<Void> llamada = this.platoRest.borrarPlato(plato.getIdPlato());
+        llamada.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                Log.d("APP SendMeal", "Despues que ejecuta"+ response.isSuccessful());
+                Log.d("APP SendMeal", "Codigo"+ response.code());
+
+                if(response.isSuccessful()){
+                    Log.d("APP SendMeal", "EJECUTO");
+
+                    for(Plato plato : listaPlatos){
+                        Log.d("APP SendMeal", "Plato"+ plato.getIdPlato());
+                    }
+                    Log.d("APP SendMeal", "Borra Plato: " + plato.getIdPlato() + plato.getTitulo());
+                    listaPlatos.remove(plato);
+
+                    for(Plato plato : listaPlatos){
+                        Log.d("APP SendMeal", "Plato"+ plato.getIdPlato());
+                    }
+
+                    Message m = new Message();
+                    m.arg1 = _BORRADO_PLATO;
+                    h.sendMessage(m);
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Log.d("APP SendMeal", "ERROR "+t.getMessage());
+                Message m = new Message();
+                m.arg1 = _ERROR_PLATO;
+                h.sendMessage(m);
+
+            }
+        });
+    }
+
+    public void actualizarPlato(final Plato plato, final Handler h){
+
+        Call<Plato> llamada = this.platoRest.actualizar(plato.getIdPlato(),plato);
+        llamada.enqueue(new Callback<Plato>() {
+            @Override
+            public void onResponse(Call<Plato> call, Response<Plato> response) {
+                Log.d("APP SendMeal", "Despues que ejecuta"+ response.isSuccessful());
+                Log.d("APP SendMeal", "Codigo"+ response.code());
+
+                if(response.isSuccessful()){
+                    Log.d("APP SendMeal", "EJECUTO");
+                    listaPlatos.remove(plato);
+                    listaPlatos.add(response.body());
+                    Message m = new Message();
+                    m.arg1 = _UPDATE_PLATO;
+                    h.sendMessage(m);
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Plato> call, Throwable t) {
+                Log.d("APP SendMeal", "ERROR "+t.getMessage());
+                Message m = new Message();
+                m.arg1 = _ERROR_PLATO;
+                h.sendMessage(m);
+
+            }
+        });
+    }
+
     public List<Plato> getListaPlatos(){
+
         return listaPlatos;
     }
 }

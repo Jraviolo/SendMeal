@@ -62,6 +62,8 @@ public class AltaPlato extends AppCompatActivity implements View.OnClickListener
             plato.setCalorias(Integer.parseInt(calorias.getText().toString()));
 
             PlatoRepository.getInstance().crearPlato(plato, miHandler);
+
+            showToast("El plato fue creado");
         }
 
     }

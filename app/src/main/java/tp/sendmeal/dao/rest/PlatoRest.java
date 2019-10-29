@@ -18,11 +18,11 @@ public interface PlatoRest {
     @GET("platos/")
     Call<List<Plato>> buscarTodos();
 
-    @DELETE ("platos/{id}")
-    Call<Void> borrar(@Path("id") Integer id);
+    @DELETE ("platos/{idPlato}")
+    Call<Void> borrarPlato(@Path("idPlato") Integer idPlato);
 
     @PUT("platos/{nombre}")
-    Call<Plato> actualizar(@Path("id") Integer id, @Body Plato plato);
+    Call<Plato> actualizar(@Path("idPlato") Integer idPlato, @Body Plato plato);
 
     @POST("platos/")
     Call<Plato> crear(@Body Plato plato);

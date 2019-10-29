@@ -6,6 +6,9 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -28,7 +31,7 @@ public class ListaPlatos extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
 
     //public static ArrayList<Plato> listaP = new ArrayList<>();
-    public static List<Plato> listaP = PlatoRepository.getInstance().getListaPlatos();
+    public static List<Plato> listaP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,8 @@ public class ListaPlatos extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        listaP = PlatoRepository.getInstance().getListaPlatos();
+        PlatoRepository.getInstance().listarPlatos(miHandler);
         /*
 
         Plato plato1 = new Plato();
@@ -96,5 +101,28 @@ public class ListaPlatos extends AppCompatActivity {
             }
         }
     }
+
+
+    public void showToast(String txtToast){
+        Toast toast1 = Toast.makeText(getApplicationContext(),txtToast, Toast.LENGTH_SHORT);
+        toast1.show();
+    }
+
+    Handler miHandler = new Handler(Looper.myLooper()){
+        @Override
+        public void handleMessage(Message m){
+            listaP = PlatoRepository.getInstance().getListaPlatos();
+            switch (m.arg1){
+                case PlatoRepository._CONSULTA_PLATO:
+                    mAdapter = new PlatoRecyclerAdapter(listaP);
+                    mRecyclerView.setAdapter(mAdapter);
+                    break;
+                case PlatoRepository._BORRADO_PLATO:
+                    mAdapter.notifyDataSetChanged();
+                    break;
+            }
+        }
+    };
+
 
 }
