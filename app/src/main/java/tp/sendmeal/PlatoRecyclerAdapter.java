@@ -5,6 +5,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
+import tp.sendmeal.dao.PlatoRepository;
 import tp.sendmeal.domain.Plato;
 
 import static android.app.PendingIntent.getActivity;
@@ -75,7 +79,7 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
                                     @Override
                                     public void onClick(DialogInterface dlgInt, int i) {
                                         mDataSet.remove(position);
-
+                                        PlatoRepository.getInstance().borrarPlato(plato, miHandler);
                                         notifyDataSetChanged();
                                         Toast.makeText(builder.getContext(), "El plato fue eliminado", Toast.LENGTH_LONG).show();
 
@@ -158,5 +162,20 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
 
 
     }
+
+
+    Handler miHandler = new Handler(Looper.myLooper()){
+        @Override
+        public void handleMessage(Message m){
+            mDataSet = PlatoRepository.getInstance().getListaPlatos();
+            switch (m.arg1){
+                case PlatoRepository._CONSULTA_PLATO:
+                    break;
+                case PlatoRepository._BORRADO_PLATO:
+
+                    break;
+            }
+        }
+    };
 
 }

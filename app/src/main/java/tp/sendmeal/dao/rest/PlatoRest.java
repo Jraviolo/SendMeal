@@ -12,8 +12,8 @@ import retrofit2.http.Path;
 import tp.sendmeal.domain.Plato;
 
 public interface PlatoRest {
-    @GET("platos/{nombre}")
-    Call<List<Plato>> buscarPlato(@Path("nombre") String nombre);
+    @GET("platos/{titulo}")
+    Call<List<Plato>> buscarPlato(@Path("titulo") String titulo);
 
     @GET("platos/")
     Call<List<Plato>> buscarTodos();
