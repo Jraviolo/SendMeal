@@ -36,4 +36,5 @@
 
     <string name="txtBuscarPlato"> Buscar plato</string>
     <string name="btnBuscarPlato"> Buscar plato</string>
+    <string name="txtRangoPrecio"> Rango de precios</string>
 </resources>

@@ -4,8 +4,14 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 
 import retrofit2.Call;
@@ -180,6 +186,158 @@ public class PlatoRepository {
 
             }
         });
+    }
+
+    public List<Plato> buscarPlato(final String nombrePlato, final Handler h){
+        Log.d("APP SendMeal", "ENTRO A BuscarPLATO");
+        final List<Plato> listaResultado = new List<Plato>() {
+            @Override
+            public int size() {
+                return 0;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean contains(@Nullable Object o) {
+                return false;
+            }
+
+            @NonNull
+            @Override
+            public Iterator<Plato> iterator() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public Object[] toArray() {
+                return new Object[0];
+            }
+
+            @NonNull
+            @Override
+            public <T> T[] toArray(@NonNull T[] ts) {
+                return null;
+            }
+
+            @Override
+            public boolean add(Plato plato) {
+                return false;
+            }
+
+            @Override
+            public boolean remove(@Nullable Object o) {
+                return false;
+            }
+
+            @Override
+            public boolean containsAll(@NonNull Collection<?> collection) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(@NonNull Collection<? extends Plato> collection) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(int i, @NonNull Collection<? extends Plato> collection) {
+                return false;
+            }
+
+            @Override
+            public boolean removeAll(@NonNull Collection<?> collection) {
+                return false;
+            }
+
+            @Override
+            public boolean retainAll(@NonNull Collection<?> collection) {
+                return false;
+            }
+
+            @Override
+            public void clear() {
+
+            }
+
+            @Override
+            public Plato get(int i) {
+                return null;
+            }
+
+            @Override
+            public Plato set(int i, Plato plato) {
+                return null;
+            }
+
+            @Override
+            public void add(int i, Plato plato) {
+
+            }
+
+            @Override
+            public Plato remove(int i) {
+                return null;
+            }
+
+            @Override
+            public int indexOf(@Nullable Object o) {
+                return 0;
+            }
+
+            @Override
+            public int lastIndexOf(@Nullable Object o) {
+                return 0;
+            }
+
+            @NonNull
+            @Override
+            public ListIterator<Plato> listIterator() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public ListIterator<Plato> listIterator(int i) {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public List<Plato> subList(int i, int i1) {
+                return null;
+            }
+        };
+        Call<List<Plato>> llamada = this.platoRest.buscarPlato(nombrePlato);
+        //Call<List<Plato>> llamada = this.platoRest.buscarPlato(2);
+        Log.d("APP SendMeal", "despues de BuscarPLATO");
+        llamada.enqueue(new Callback<List<Plato>>() {
+            @Override
+            public void onResponse(Call<List<Plato>> call, Response<List<Plato>> response) {
+                if(response.isSuccessful()){
+                    listaResultado.clear();
+                    listaResultado.addAll(response.body());
+
+                    Log.d("APP SendMeal", "DESPUES DE ADDALL - size: "+ listaResultado.size());
+                    Message m = new Message();
+                    m.arg1 = _CONSULTA_PLATO;
+                    h.sendMessage(m);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Plato>> call, Throwable t) {
+                Message m = new Message();
+                m.arg1 = _ERROR_PLATO;
+                h.sendMessage(m);
+            }
+        });
+
+        return listaResultado;
     }
 
     public List<Plato> getListaPlatos(){

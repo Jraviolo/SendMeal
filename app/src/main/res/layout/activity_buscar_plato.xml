@@ -17,26 +17,43 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="243dp"
         android:orientation="vertical"
         android:padding="5dp">
 
-    <TextView
-        android:id="@+id/textNombrePlato"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/txtNombrePlato" />
+        <TextView
+            android:id="@+id/textNombrePlato"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txtNombrePlato" />
 
         <EditText
             android:id="@+id/editBuscar"
             android:layout_width="match_parent"
             android:layout_height="57dp" />
 
-    <Button
-        android:id="@+id/btnBuscar"
+        <TextView
+            android:id="@+id/textRangoPrecio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/txtRangoPrecio" />
+
+        <Button
+            android:id="@+id/btnBuscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btnBuscarPlato" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/btnBuscarPlato" />
+        android:layout_height="432dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/CardRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 </LinearLayout>
