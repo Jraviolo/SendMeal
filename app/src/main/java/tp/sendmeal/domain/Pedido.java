@@ -1,15 +1,26 @@
 package tp.sendmeal.domain;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.Relation;
+
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Pedido {
 
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name = "id_pedido")
     private Integer id;
     private Date fecha;
     private Integer estado;
     private Double lat;
     private Double lng;
+    @Relation(parentColumn = "id_pedido",entityColumn = "idpedido",entity = ItemsPedido.class)
     private List<ItemsPedido> items;
 
 
