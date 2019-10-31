@@ -1,0 +1,37 @@
+{
+  "platos": [
+    {
+      "calorias": 444,
+      "descripcion": "2",
+      "idPlato": 2,
+      "precio": 311,
+      "titulo": "Hamburguesa 2",
+      "id": 2
+    },
+    {
+      "calorias": 222,
+      "descripcion": "",
+      "idPlato": 3,
+      "precio": 210,
+      "titulo": "Milanesa",
+      "id": 3
+    },
+    {
+      "calorias": 65,
+      "descripcion": "aa",
+      "idPlato": 5,
+      "precio": 45,
+      "titulo": "Empanada",
+      "id": 5
+    },
+    {
+      "calorias": 111,
+      "descripcion": "www",
+      "idPlato": 7,
+      "precio": 111,
+      "titulo": "Plato",
+      "id": 6
+    }
+  ],
+  "pedidos": []
+}
