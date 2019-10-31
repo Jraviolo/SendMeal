@@ -1,6 +1,13 @@
 package tp.sendmeal.domain;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+
 public class Plato {
+
     private Integer idPlato;
     private String titulo;
     private String descripcion;

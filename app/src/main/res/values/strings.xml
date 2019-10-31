@@ -23,6 +23,7 @@
     <string name="CrearItem">Crear item</string>
     <string name="ListaItems">Lista de items</string>
     <string name="BuscarItem">Buscar item</string>
+    <string name="CrearPedido">Crear pedido</string>
 
 
     <string name="txtCrearPlato"> Crear Plato</string>
@@ -37,7 +38,6 @@
     <string name="txtBuscarPlato"> Buscar plato</string>
     <string name="btnBuscarPlato"> Buscar plato</string>
     <string name="txtRangoPrecio"> Rango de precios</string>
-
     <string name="txtPedido"> Pedido </string>
 
 </resources>

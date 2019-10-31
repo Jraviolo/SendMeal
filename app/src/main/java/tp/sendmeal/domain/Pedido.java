@@ -3,6 +3,7 @@ package tp.sendmeal.domain;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.Relation;
 
@@ -16,11 +17,13 @@ public class Pedido {
     @NonNull
     @ColumnInfo(name = "id_pedido")
     private Integer id;
+    @Ignore
     private Date fecha;
     private Integer estado;
     private Double lat;
     private Double lng;
-    @Relation(parentColumn = "id_pedido",entityColumn = "idpedido",entity = ItemsPedido.class)
+
+    @Ignore
     private List<ItemsPedido> items;
 
 
@@ -48,7 +51,7 @@ public class Pedido {
         return estado;
     }
 
-
+    /*
     public String getEstado() {
         String stringEstado = new String();
 
@@ -82,8 +85,11 @@ public class Pedido {
 
 
         return stringEstado;
-    }
+    }*/
 
+    public Integer getEstado() {
+        return estado;
+    }
 
     public void setEstado(Integer estado) {
         this.estado = estado;

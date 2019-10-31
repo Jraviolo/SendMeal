@@ -48,7 +48,7 @@ public class ListaPlatos extends AppCompatActivity {
         /*
 
         Plato plato1 = new Plato();
-        plato1.setPrecio(148.00);
+        plato1.setPrecioItem(148.00);
         plato1.setTitulo("Hamburguesa1");
         plato1.setDescripcion("jajaja1");
         plato1.setCalorias(123);
@@ -56,7 +56,7 @@ public class ListaPlatos extends AppCompatActivity {
         listaP.add(plato1);
 
         Plato plato2 = new Plato();
-        plato2.setPrecio(200.00);
+        plato2.setPrecioItem(200.00);
         plato2.setTitulo("Hamburguesa2");
         plato2.setDescripcion("jajaja2");
         plato2.setCalorias(123);
@@ -64,7 +64,7 @@ public class ListaPlatos extends AppCompatActivity {
         listaP.add(plato2);
 
         Plato plato3 = new Plato();
-        plato3.setPrecio(220.00);
+        plato3.setPrecioItem(220.00);
         plato3.setTitulo("Hamburguesa3");
         plato3.setDescripcion("jajaja3");
         plato3.setCalorias(123);
@@ -72,7 +72,7 @@ public class ListaPlatos extends AppCompatActivity {
         listaP.add(plato3);
 
         Plato plato4 = new Plato();
-        plato4.setPrecio(210.00);
+        plato4.setPrecioItem(210.00);
         plato4.setTitulo("Hamburguesa4");
         plato4.setDescripcion("jajaja4");
         plato4.setCalorias(123);

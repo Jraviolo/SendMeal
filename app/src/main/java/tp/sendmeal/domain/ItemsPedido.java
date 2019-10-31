@@ -4,24 +4,30 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
-import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(foreignKeys = @ForeignKey(entity = Pedido.class, parentColumns = "id_pedido", childColumns = "idpedido"))
+@Entity
 public class ItemsPedido {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "id_itemPedido")
     private Integer id;
-    @Embedded private Pedido pedido;
+    //@Embedded private Pedido pedido;
     @Embedded private Plato plato;
     private Integer cantidad;
-    private Float precio;
+    private Float precioItem;
 
-    @ColumnInfo(name = "idpedido")
-    private int idpedido;
+    private long pedidoId;
 
     public ItemsPedido() {
+    }
+
+    public long getPedidoId() {
+        return pedidoId;
+    }
+
+    public void setPedidoId(long pedidoId) {
+        this.pedidoId = pedidoId;
     }
 
     public Integer getId() {
@@ -30,14 +36,6 @@ public class ItemsPedido {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
     }
 
     public Plato getPlato() {
@@ -56,11 +54,11 @@ public class ItemsPedido {
         this.cantidad = cantidad;
     }
 
-    public Float getPrecio() {
-        return precio;
+    public Float getPrecioItem() {
+        return precioItem;
     }
 
-    public void setPrecio(Float precio) {
-        this.precio = precio;
+    public void setPrecioItem(Float precioItem) {
+        this.precioItem = precioItem;
     }
 }

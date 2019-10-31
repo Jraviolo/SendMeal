@@ -7,6 +7,8 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import java.util.List;
+
 import tp.sendmeal.domain.ItemsPedido;
 
 
@@ -23,4 +25,7 @@ public interface ItemPedidoDao {
 
     @Query("SELECT * FROM ItemsPedido WHERE id_itemPedido = :id")
     public ItemsPedido selectItemPedidoById(int id);
+
+    @Query("SELECT * FROM ItemsPedido WHERE idPlato = :id")
+    public List<ItemsPedido> selectItemsPedidoByIdPlato(int id);
 }

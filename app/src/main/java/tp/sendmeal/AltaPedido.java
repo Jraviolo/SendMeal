@@ -16,7 +16,15 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.List;
+
+import tp.sendmeal.dao.PedidoDB;
+import tp.sendmeal.dao.PedidoDao;
+import tp.sendmeal.dao.PedidoRepository;
 import tp.sendmeal.dao.PlatoRepository;
+import tp.sendmeal.domain.ItemsPedido;
+import tp.sendmeal.domain.Pedido;
+import tp.sendmeal.domain.PedidoAndItems;
 import tp.sendmeal.domain.Plato;
 
 public class AltaPedido extends AppCompatActivity implements View.OnClickListener{
@@ -30,19 +38,17 @@ public class AltaPedido extends AppCompatActivity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_alta_plato);
-        Button btnGuardar = (Button) findViewById(R.id.APbtnGuardar);
-        btnGuardar.setOnClickListener(this);
+        setContentView(R.layout.activity_alta_pedido);
+        Button btnCrear = (Button) findViewById(R.id.buttonCrearPedido);
+        btnCrear.setOnClickListener(this);
 
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbarAltaPlato));
+        Button btnEnviar = (Button) findViewById(R.id.buttonEnviarPedido);
+
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbarAltaPedido));
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        idPlato = (EditText) findViewById(R.id.APeditId);
-        nombre = (EditText) findViewById(R.id.APeditNombre);
-        descripcion = (EditText) findViewById(R.id.APeditDescripcion);
-        precio = (EditText) findViewById(R.id.APeditPrecio);
-        calorias = (EditText) findViewById(R.id.APeditCalorias);
+
 
     }
 
@@ -50,51 +56,42 @@ public class AltaPedido extends AppCompatActivity implements View.OnClickListene
 
     @Override
     public void onClick(View view) {
+        Pedido pedido =new Pedido();
+        pedido.setEstado(1);
+        pedido.setLat((double) 100);
+        pedido.setLng((double) 100);
 
-        if(validarCampos()){
-            /* Si validarCampos() devuelve true, se crea un nuevo plato */
-            Plato plato = new Plato();
-            plato.setIdPlato(Integer.parseInt(idPlato.getText().toString()));
-            plato.setTitulo(nombre.getText().toString());
-            plato.setDescripcion(descripcion.getText().toString());
-            plato.setPrecio(Double.parseDouble(precio.getText().toString()));
-            plato.setCalorias(Integer.parseInt(calorias.getText().toString()));
+        ItemsPedido item =new ItemsPedido();
+        item.setCantidad(1);
 
-            PlatoRepository.getInstance().crearPlato(plato, miHandler);
+        Plato plato1 = new Plato();
+        plato1.setPrecio((double)123);
+        plato1.setTitulo("hola ale");
+        plato1.setDescripcion("jajaja1");
+        plato1.setCalorias(123);
+        plato1.setIdPlato(1);
 
-            showToast("El plato fue creado");
-        }
+        item.setPlato(plato1);
+        item.setPrecioItem((float)10);
 
+
+        PedidoDao pdao= PedidoRepository.getInstance(AltaPedido.this).getPedidoDB().pedidoDao();
+        Long pedidoId = pdao.insertPedido(pedido);
+        System.out.println("Insertaste el pedido con el id:"+pedidoId);
+        item.setPedidoId(pedidoId);
+        pdao.insertItem(item);
+        System.out.println("Insertaste Item con nombre de plato:"+item.getPlato().getTitulo());
+
+//ASI LO TRAIGO DE NUEVO
+        PedidoAndItems pedidoAndItems= pdao.loadPedidoAndItemsById(pedidoId);
+        //LE CARGO LA LISTA DE ITEMS AL PEDIDO
+        System.out.println("Recuperaste el pedido nuemro:"+pedidoId);
+        pedidoAndItems.getPedido().setItems(pedidoAndItems.getItems());
+        System.out.println("Seteaste la lista de items");
+        String t = pedidoAndItems.getItems().get(0).getPlato().getTitulo();
+        System.out.println("El item 0 tiene el nombre de plato"+ t);
     }
 
-
-    public boolean validarCampos(){
-
-        //EL ID SE INGRESA O EL SISTEMA LO PONE SOLO??
-        if( idPlato.getText().toString().isEmpty()) {
-            showToast("El campo id es obligatorio");
-            return false;
-        }
-        if( nombre.getText().toString().isEmpty()) {
-            showToast("El campo nombre es obligatorio");
-            return false;
-        }
-        if( precio.getText().toString().isEmpty()) {
-            showToast("El campo precio es obligatorio");
-            return false;
-        }
-        if( calorias.getText().toString().isEmpty()) {
-            showToast("El campo calorias es obligatorio");
-            return false;
-        }
-
-        return true;
-    }
-
-    public void showToast(String txtToast){
-        Toast toast1 = Toast.makeText(getApplicationContext(),txtToast, Toast.LENGTH_SHORT);
-        toast1.show();
-    }
 
     @Override
 

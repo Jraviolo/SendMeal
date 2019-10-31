@@ -42,6 +42,10 @@ public class Home extends AppCompatActivity  {
                 Intent i4 = new Intent(this, BuscarPlato.class);
                 startActivity(i4);
                 return true;
+            case R.id.MenuCrearPedido:
+                Intent i5 = new Intent(this, AltaPedido.class);
+                startActivity(i5);
+                return true;
             default:
                 Toast.makeText(this, "default switch", Toast.LENGTH_LONG).show();
                 return super.onOptionsItemSelected(item);

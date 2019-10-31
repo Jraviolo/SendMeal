@@ -23,7 +23,9 @@ import tp.sendmeal.dao.rest.PlatoRest;
 import tp.sendmeal.domain.Plato;
 
 public class PlatoRepository {
-    public static String _SERVER = "http://10.0.2.2:5000";
+    //    public static String _SERVER = "http://10.0.2.2:5000";
+
+    public static String _SERVER = "http:/192.168.1.102:5000";
     private List<Plato> listaPlatos;
 
     public static final int _ALTA_PLATO = 1;
@@ -51,7 +53,7 @@ public class PlatoRepository {
 
     private void configurarRetrofit(){
         this.rf = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:5000")
+                .baseUrl(_SERVER)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         Log.d("APP_2","INSTANCIA CREADA");

@@ -31,6 +31,14 @@
       "precio": 111,
       "titulo": "Plato",
       "id": 6
+    },
+    {
+      "calorias": 1,
+      "descripcion": "aa",
+      "idPlato": 1,
+      "precio": 120,
+      "titulo": "aa",
+      "id": 7
     }
   ],
   "pedidos": []
