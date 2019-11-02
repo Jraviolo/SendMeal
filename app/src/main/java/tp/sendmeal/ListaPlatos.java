@@ -87,7 +87,7 @@ public class ListaPlatos extends AppCompatActivity {
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new PlatoRecyclerAdapter(listaP);
+        mAdapter = new PlatoRecyclerAdapter(listaP, false);
         mRecyclerView.setAdapter(mAdapter);
 
     }
@@ -114,7 +114,7 @@ public class ListaPlatos extends AppCompatActivity {
             listaP = PlatoRepository.getInstance().getListaPlatos();
             switch (m.arg1){
                 case PlatoRepository._CONSULTA_PLATO:
-                    mAdapter = new PlatoRecyclerAdapter(listaP);
+                    mAdapter = new PlatoRecyclerAdapter(listaP,false);
                     mRecyclerView.setAdapter(mAdapter);
                     break;
                 case PlatoRepository._BORRADO_PLATO:

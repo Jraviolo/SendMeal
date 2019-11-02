@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    android:orientation="vertical"
+    card_view:cardBackgroundColor="@color/coloCVFondo"
+    card_view:cardCornerRadius="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/RBimagen"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            tools:srcCompat="@tools:sample/backgrounds/scenic"
+            android:scaleType="centerCrop"/>
+
+
+        <TextView
+            android:id="@+id/RBnombrePlato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/dimNombrePlato"
+            android:padding="5dp"
+            android:typeface="sans"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/RBprecio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dimPrecioPlato"
+            android:textColor="@color/colorCVPrecio"
+
+            android:paddingLeft="20dp"
+            android:paddingBottom="5dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/RBbtnAgregar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="" />
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

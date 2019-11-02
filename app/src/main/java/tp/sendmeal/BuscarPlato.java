@@ -212,7 +212,7 @@ public class BuscarPlato extends AppCompatActivity implements View.OnClickListen
 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new PlatoRecyclerAdapter(listaP);
+        mAdapter = new PlatoRecyclerAdapter(listaP,true);
         mRecyclerView.setAdapter(mAdapter);
 
 
@@ -245,7 +245,7 @@ public class BuscarPlato extends AppCompatActivity implements View.OnClickListen
                 case PlatoRepository._CONSULTA_PLATO:
                     Log.d("case consultaplato BUSCRPLATO", "size lista"+ listaP.size());
 
-                    mAdapter = new PlatoRecyclerAdapter(listaP);
+                    mAdapter = new PlatoRecyclerAdapter(listaP,true);
                     mRecyclerView.setAdapter(mAdapter);
                     break;
                 case PlatoRepository._BORRADO_PLATO:

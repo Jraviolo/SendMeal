@@ -30,15 +30,23 @@ import static androidx.core.content.ContextCompat.startActivity;
 public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdapter.PlatoViewHolder> {
 
     public List<Plato> mDataSet;
+    private Boolean buscar;
 
     public static final int CODIGO_LISTA_PLATO = 100;
 
-    public PlatoRecyclerAdapter (List<Plato> myDataSet){
+    public PlatoRecyclerAdapter (List<Plato> myDataSet, boolean b){
         mDataSet = myDataSet;
+        buscar = b;
     }
 
     public PlatoViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        View v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.fila_plato,parent,false);
+        View v;
+        if (buscar == false) {
+             v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.fila_plato, parent, false);
+        }
+        else{
+             v = (View) LayoutInflater.from(parent.getContext()).inflate(R.layout.resultado_busqueda, parent, false);
+        }
         PlatoViewHolder vh = new PlatoViewHolder(v);
         return vh;
     }
@@ -50,87 +58,91 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
         holder.nombrePlato.setText(plato.getTitulo());
         holder.precio.setText("$ "+plato.getPrecio().toString());
 
-        //define que elemento del array es
-        holder.btnEditar.setTag(position);
-        holder.btnEditar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        if(buscar==false) {
+            //define que elemento del array es
+            holder.btnEditar.setTag(position);
+            holder.btnEditar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-                String indice=view.getTag().toString();
+                    String indice = view.getTag().toString();
 
-                Intent i = new Intent(view.getContext(),EditarPlato.class);
-                i.putExtra("INDICE",indice);
-                ((Activity)view.getContext()).startActivityForResult(i,CODIGO_LISTA_PLATO);
-            }
-        });
-
-
-        /* Opcion ELIMINAR */
-
-        holder.btnEliminar.setTag(position);
-        holder.btnEliminar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                builder.setMessage("Desea eliminar el plato \" "+plato.getTitulo()+"\"")
-                        .setTitle("Eliminar Plato")
-                        .setPositiveButton("Aceptar",
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dlgInt, int i) {
-                                        mDataSet.remove(position);
-                                        PlatoRepository.getInstance().borrarPlato(plato, miHandler);
-                                        notifyDataSetChanged();
-                                        Toast.makeText(builder.getContext(), "El plato fue eliminado", Toast.LENGTH_LONG).show();
-
-                                    }
-                                });
-                builder.setNegativeButton("Cancelar",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dlgInt, int i) {
-                                //Toast.makeText(builder.getContext(), "Cancelado", Toast.LENGTH_LONG).show();
-                            }
-                        });
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
-            }
-        );
-
-        /* Opcion OFERTA */
-
-        holder.btnOferta.setTag(position);
-        holder.btnOferta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final String indice=view.getTag().toString();
-                final Activity vie = (Activity)view.getContext();
-                Runnable r = new Runnable() {
-                    @Override
-                    public void run() {
-                        try{
-                            Thread.currentThread().sleep(10000);
-                        } catch (InterruptedException e){
-                            e.printStackTrace();
-                        }
+                    Intent i = new Intent(view.getContext(), EditarPlato.class);
+                    i.putExtra("INDICE", indice);
+                    ((Activity) view.getContext()).startActivityForResult(i, CODIGO_LISTA_PLATO);
+                }
+            });
 
 
-                        Intent i = new Intent();
-                        i.putExtra("INDICE", indice);
-                        i.putExtra("NOMBRE",plato.getTitulo());
-                        i.setAction(OfertaReceiver.EVENTO1);
-                        vie.sendBroadcast(i);
+            /* Opcion ELIMINAR */
 
-                    }
-                };
-                Thread t1 = new Thread(r);
-                t1.start();
-            }
+            holder.btnEliminar.setTag(position);
+            holder.btnEliminar.setOnClickListener(new View.OnClickListener() {
+                                                      @Override
+                                                      public void onClick(View view) {
+                                                          final AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                                                          builder.setMessage("Desea eliminar el plato \" " + plato.getTitulo() + "\"")
+                                                                  .setTitle("Eliminar Plato")
+                                                                  .setPositiveButton("Aceptar",
+                                                                          new DialogInterface.OnClickListener() {
+                                                                              @Override
+                                                                              public void onClick(DialogInterface dlgInt, int i) {
+                                                                                  mDataSet.remove(position);
+                                                                                  PlatoRepository.getInstance().borrarPlato(plato, miHandler);
+                                                                                  notifyDataSetChanged();
+                                                                                  Toast.makeText(builder.getContext(), "El plato fue eliminado", Toast.LENGTH_LONG).show();
+
+                                                                              }
+                                                                          });
+                                                          builder.setNegativeButton("Cancelar",
+                                                                  new DialogInterface.OnClickListener() {
+                                                                      @Override
+                                                                      public void onClick(DialogInterface dlgInt, int i) {
+                                                                          //Toast.makeText(builder.getContext(), "Cancelado", Toast.LENGTH_LONG).show();
+                                                                      }
+                                                                  });
+                                                          AlertDialog dialog = builder.create();
+                                                          dialog.show();
+                                                      }
+                                                  }
+            );
+
+            /* Opcion OFERTA */
+
+            holder.btnOferta.setTag(position);
+            holder.btnOferta.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View view) {
+                                                        final String indice = view.getTag().toString();
+                                                        final Activity vie = (Activity) view.getContext();
+                                                        Runnable r = new Runnable() {
+                                                            @Override
+                                                            public void run() {
+                                                                try {
+                                                                    Thread.currentThread().sleep(10000);
+                                                                } catch (InterruptedException e) {
+                                                                    e.printStackTrace();
+                                                                }
+
+
+                                                                Intent i = new Intent();
+                                                                i.putExtra("INDICE", indice);
+                                                                i.putExtra("NOMBRE", plato.getTitulo());
+                                                                i.setAction(OfertaReceiver.EVENTO1);
+                                                                vie.sendBroadcast(i);
+
+                                                            }
+                                                        };
+                                                        Thread t1 = new Thread(r);
+                                                        t1.start();
+                                                    }
+                                                }
+            );
+
         }
-        );
-
-
+        else{
+            //LOGICA BOTON AGREGAR AL PEDIDO
+        }
     }
 
 
@@ -148,16 +160,26 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
         Button btnEditar;
         Button btnEliminar;
         Button btnOferta;
+        Button btnAgregar;
 
         PlatoViewHolder(View base){
             super(base);
-            this.imagenPlato = (ImageView) base.findViewById(R.id.FPimagen);
-            this.nombrePlato = (TextView) base.findViewById(R.id.FPnombrePlato);
-            this.precio = (TextView) base.findViewById(R.id.FPprecio);
 
-            this.btnEditar=(Button) base.findViewById(R.id.FPbtnEditar);
-            this.btnEliminar=(Button) base.findViewById(R.id.FPbtnEliminar);
-            this.btnOferta=(Button) base.findViewById(R.id.FPbtnOferta);
+            if(buscar==false) {
+                this.imagenPlato = (ImageView) base.findViewById(R.id.FPimagen);
+                this.nombrePlato = (TextView) base.findViewById(R.id.FPnombrePlato);
+                this.precio = (TextView) base.findViewById(R.id.FPprecio);
+
+                this.btnEditar = (Button) base.findViewById(R.id.FPbtnEditar);
+                this.btnEliminar = (Button) base.findViewById(R.id.FPbtnEliminar);
+                this.btnOferta = (Button) base.findViewById(R.id.FPbtnOferta);
+            }
+            else{
+                this.imagenPlato = (ImageView) base.findViewById(R.id.RBimagen);
+                this.nombrePlato = (TextView) base.findViewById(R.id.RBnombrePlato);
+                this.precio = (TextView) base.findViewById(R.id.RBprecio);
+                this.btnAgregar = (Button) base.findViewById(R.id.RBbtnAgregar);
+            }
         }
 
 
