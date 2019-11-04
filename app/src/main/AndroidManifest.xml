@@ -22,6 +22,7 @@
         <activity android:name=".ListaPlatos"  android:parentActivityName=".Home"/>
 
         <activity android:name=".Mapa" />
+        <activity android:name=".MapaPedidos" android:parentActivityName=".Home"/>
 
         <activity android:name=".EditarPlato"/>
 

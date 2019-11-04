@@ -28,4 +28,9 @@
         android:title="@string/CrearPedido"
         android:orderInCategory="5" app:showAsAction="ifRoom">
     </item>
+    <item
+        android:id="@+id/MenuMapaPedidos"
+        android:title="@string/MapaPedidos"
+        android:orderInCategory="5" app:showAsAction="ifRoom">
+    </item>
 </menu>

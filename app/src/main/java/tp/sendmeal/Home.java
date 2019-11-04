@@ -46,6 +46,10 @@ public class Home extends AppCompatActivity  {
                 Intent i5 = new Intent(this, AltaPedido.class);
                 startActivity(i5);
                 return true;
+            case R.id.MenuMapaPedidos:
+                Intent i6 = new Intent(this, MapaPedidos.class);
+                startActivity(i6);
+                return true;
             default:
                 Toast.makeText(this, "default switch", Toast.LENGTH_LONG).show();
                 return super.onOptionsItemSelected(item);

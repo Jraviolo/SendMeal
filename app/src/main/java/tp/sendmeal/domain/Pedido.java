@@ -53,8 +53,8 @@ public class Pedido {
         return estado;
     }
 
-    /*
-    public String getEstado() {
+
+    public String getEstadoText() {
         String stringEstado = new String();
 
         switch (estado){
@@ -87,7 +87,7 @@ public class Pedido {
 
 
         return stringEstado;
-    }*/
+    }
 
     public Integer getEstado() {
         return estado;
