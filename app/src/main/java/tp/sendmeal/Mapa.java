@@ -1,6 +1,7 @@
 package tp.sendmeal;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
@@ -10,8 +11,10 @@ import androidx.fragment.app.FragmentActivity;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
 
 public class Mapa extends FragmentActivity implements OnMapReadyCallback {
+
     private GoogleMap mMap;
 
     @Override
@@ -26,6 +29,22 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         actualizarMapa();
+
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+
+                Intent i = new Intent();
+
+                double latitud=latLng.latitude;
+                double longitud=latLng.longitude;
+
+                i.putExtra("LATITUD",latitud);
+                i.putExtra("LONGITUD",longitud);
+                setResult(RESULT_OK,i);
+                finish();
+            }
+        });
     }
 
     private void actualizarMapa() {
@@ -49,11 +68,12 @@ public class Mapa extends FragmentActivity implements OnMapReadyCallback {
                 if (grantResults.length > 0 && grantResults[0] ==
                         PackageManager.PERMISSION_GRANTED) {
                     actualizarMapa();
-                } else { // }
+                } else {
                     return;
                 }
             }
         }
     }
+
 
 }

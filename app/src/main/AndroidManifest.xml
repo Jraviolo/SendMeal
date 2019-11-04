@@ -15,15 +15,13 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity android:name=".AltaPlato"></activity>
-        <activity android:name=".CrearItem"
-            android:parentActivityName=".Home"/>
-        <activity android:name=".AltaPedido"
-            android:parentActivityName=".Home"/>
-        <activity android:name=".MainActivity"
-            android:parentActivityName=".Home"/>
+        <activity android:name=".CrearItem" android:parentActivityName=".Home"/>
+        <activity android:name=".AltaPedido"  android:parentActivityName=".Home"/>
+        <activity android:name=".MainActivity"    android:parentActivityName=".Home"/>
 
-        <activity android:name=".ListaPlatos"
-            android:parentActivityName=".Home"/>
+        <activity android:name=".ListaPlatos"  android:parentActivityName=".Home"/>
+
+        <activity android:name=".Mapa" />
 
         <activity android:name=".EditarPlato"/>
 
@@ -36,9 +34,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data android:name="com.google.android.gms.version"
+        <!--<meta-data android:name="com.google.android.gms.version"
             android:value="49"
-            tools:replace = "android:value"/>
+            tools:replace = "android:value"/>-->
+
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCuYHwH_F4qzlVLJYDJWIR5FZWS_eN5loA"/>
 

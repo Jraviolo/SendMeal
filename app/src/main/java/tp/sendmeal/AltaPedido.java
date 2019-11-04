@@ -1,5 +1,6 @@
 package tp.sendmeal;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,39 +28,63 @@ import tp.sendmeal.domain.Pedido;
 import tp.sendmeal.domain.PedidoAndItems;
 import tp.sendmeal.domain.Plato;
 
-public class AltaPedido extends AppCompatActivity implements View.OnClickListener{
+public class AltaPedido extends AppCompatActivity {
+    private static int CODIGO_UBICACION=123;
+    private double latitud;
+    private double longitud;
 
-    private EditText idPlato;
-    private EditText nombre;
-    private EditText descripcion;
-    private EditText precio;
-    private EditText calorias;
+    private Button btnCrear;
+    private Button btnEnviar;
+    private Button btnUbicacion;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alta_pedido);
-        Button btnCrear = (Button) findViewById(R.id.buttonCrearPedido);
-        btnCrear.setOnClickListener(this);
 
-        Button btnEnviar = (Button) findViewById(R.id.buttonEnviarPedido);
+        btnUbicacion=(Button) findViewById(R.id.buttonUbicacion);
+
+        btnCrear = (Button) findViewById(R.id.buttonCrearPedido);
+        btnCrear.setEnabled(false);
+
+
+        btnEnviar = (Button) findViewById(R.id.buttonEnviarPedido);
+        btnEnviar.setEnabled(false);
+
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbarAltaPedido));
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+//ACCIONES DE BOTONES
+        btnCrear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                crearPedido();
+                btnEnviar.setEnabled(true);
+            }
+        });
 
+        btnUbicacion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(view.getContext(), Mapa.class);
+                ((Activity) view.getContext()).startActivityForResult(i, CODIGO_UBICACION);
+
+            }
+        });
 
     }
 
 
-
-    @Override
-    public void onClick(View view) {
+    public void crearPedido() {
         Pedido pedido =new Pedido();
         pedido.setEstado(1);
-        pedido.setLat((double) 100);
-        pedido.setLng((double) 100);
+        pedido.setLat(latitud);
+        pedido.setLng(longitud);
 
         ItemsPedido item =new ItemsPedido();
         item.setCantidad(1);
@@ -104,6 +129,19 @@ public class AltaPedido extends AppCompatActivity implements View.OnClickListene
         return super.onOptionsItemSelected(item);
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == CODIGO_UBICACION && resultCode == RESULT_OK && data != null) {
+
+            String indice="";
+            Bundle extras = data.getExtras();
+            latitud= extras.getDouble("LATITUD");
+            longitud = extras.getDouble("LONGITUD");
+            System.out.println(latitud+" "+longitud);
+            btnCrear.setEnabled(true);
+        }
+    }
 
 
     //PUEDE FALLAR
