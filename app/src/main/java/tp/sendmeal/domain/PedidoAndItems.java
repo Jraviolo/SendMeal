@@ -3,6 +3,7 @@ package tp.sendmeal.domain;
 import androidx.room.Embedded;
 import androidx.room.Relation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PedidoAndItems {
@@ -21,7 +22,7 @@ public class PedidoAndItems {
         return items;
     }
 
-    public void setItems(List<ItemsPedido> items) {
+    public void setItems(ArrayList<ItemsPedido> items) {
         this.items = items;
     }
 

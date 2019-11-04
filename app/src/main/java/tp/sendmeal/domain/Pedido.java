@@ -7,6 +7,8 @@ import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.Relation;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -118,4 +120,6 @@ public class Pedido {
     public void setItems(List<ItemsPedido> items) {
         this.items = items;
     }
+
+
 }

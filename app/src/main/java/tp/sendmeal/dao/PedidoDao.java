@@ -8,6 +8,7 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import tp.sendmeal.domain.ItemsPedido;
@@ -15,28 +16,42 @@ import tp.sendmeal.domain.Pedido;
 import tp.sendmeal.domain.PedidoAndItems;
 
 @Dao
-public interface PedidoDao {
+public abstract class PedidoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    public long insertPedido(Pedido pedido);
+    public abstract long _insertPedido(Pedido pedido);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    public void insertItem(ItemsPedido item);
+    public abstract void _insertItem(ItemsPedido item);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    public void insertItem(List<ItemsPedido> items);
 
     @Update
-    public  void updatePedido(Pedido pedido);
+    public  abstract void updatePedido(Pedido pedido);
 
     @Delete
-    public void deletePedido(Pedido pedido);
+    public abstract void deletePedido(Pedido pedido);
 
     @Query("SELECT * FROM Pedido WHERE id_pedido = :id")
-    public Pedido selectPedidoById(int id);
+    public abstract Pedido selectPedidoById(int id);
 
-    @Query("SELECT * FROM Pedido")
-    public List<PedidoAndItems> loadPedidoAndItems();
 
-    @Query("SELECT * FROM Pedido WHERE id_pedido =:id")
-    public PedidoAndItems loadPedidoAndItemsById(long id);
+    //@Query("SELECT * FROM Pedido")
+//    public  abstract List<PedidoAndItems> loadPedidoAndItems();
+
+
+    @Transaction    @Query("SELECT * FROM Pedido WHERE id_pedido =:id")
+    public abstract PedidoAndItems loadPedidoAndItemsById(long id);
+
+@Transaction
+    public long insertPedidoAndItems(Pedido pedido) {
+        long idpedido=_insertPedido(pedido);
+        List<ItemsPedido> items=pedido.getItems();
+        if (!items.isEmpty()){
+            for (int i=0; i<items.size();i++){
+                ItemsPedido item=items.get(i);
+                item.setPedidoId(idpedido);
+                this._insertItem(item);
+            }
+        }
+        return idpedido;
+    }
 }

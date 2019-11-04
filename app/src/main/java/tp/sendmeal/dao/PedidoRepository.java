@@ -40,7 +40,7 @@ public class PedidoRepository {
     }
 
     public void insertPedido(Pedido pedido){
-        pedidoDao.insertPedido(pedido);
+        pedidoDao.insertPedidoAndItems(pedido);
     }
     public  void updatePedido(Pedido pedido){
         pedidoDao.updatePedido(pedido);

@@ -17,6 +17,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import tp.sendmeal.dao.PedidoDB;
@@ -30,6 +31,7 @@ import tp.sendmeal.domain.Plato;
 
 public class AltaPedido extends AppCompatActivity {
     private static int CODIGO_UBICACION=123;
+    private long id_pedido;
     private double latitud;
     private double longitud;
 
@@ -63,7 +65,16 @@ public class AltaPedido extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 crearPedido();
+                btnUbicacion.setEnabled(false);
                 btnEnviar.setEnabled(true);
+                btnCrear.setEnabled(false);
+            }
+        });
+
+        btnEnviar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                enviarPedido();
             }
         });
 
@@ -99,15 +110,23 @@ public class AltaPedido extends AppCompatActivity {
         item.setPlato(plato1);
         item.setPrecioItem((float)10);
 
-
+        List<ItemsPedido> itemsss=new ArrayList<>();
+        itemsss.add(item);
+        pedido.setItems(itemsss);
         PedidoDao pdao= PedidoRepository.getInstance(AltaPedido.this).getPedidoDB().pedidoDao();
-        Long pedidoId = pdao.insertPedido(pedido);
-        System.out.println("Insertaste el pedido con el id:"+pedidoId);
-        item.setPedidoId(pedidoId);
-        pdao.insertItem(item);
-        System.out.println("Insertaste Item con nombre de plato:"+item.getPlato().getTitulo());
+        Long pedidoId = pdao.insertPedidoAndItems(pedido);
+        //Long pedidoId = pdao.insertPedido(pedido);
+        //System.out.println("Insertaste el pedido con el id:"+pedidoId);
+        //item.setPedidoId(pedidoId);
+        //pdao.insertItem(item);
+        //System.out.println("Insertaste Item con nombre de plato:"+item.getPlato().getTitulo());
+        id_pedido=pedidoId;
+    }
 
-//ASI LO TRAIGO DE NUEVO
+    public void enviarPedido(){
+        PedidoDao pdao= PedidoRepository.getInstance(AltaPedido.this).getPedidoDB().pedidoDao();
+        long pedidoId=id_pedido;
+        //ASI LO TRAIGO DE NUEVO
         PedidoAndItems pedidoAndItems= pdao.loadPedidoAndItemsById(pedidoId);
         //LE CARGO LA LISTA DE ITEMS AL PEDIDO
         System.out.println("Recuperaste el pedido nuemro:"+pedidoId);
@@ -116,7 +135,6 @@ public class AltaPedido extends AppCompatActivity {
         String t = pedidoAndItems.getItems().get(0).getPlato().getTitulo();
         System.out.println("El item 0 tiene el nombre de plato"+ t);
     }
-
 
     @Override
 
