@@ -42,4 +42,17 @@
     <string name="txtRangoPrecio"> Rango de precios</string>
     <string name="txtPedido"> Pedido </string>
 
+
+    <string-array name="estados_array">
+        <item>TODOS</item>
+        <item>Pendiente</item>
+        <item>Enviado</item>
+        <item>Aceptado</item>
+        <item>Rechazado</item>
+        <item>En preparacion</item>
+        <item>En envio</item>
+        <item>Entregado</item>
+        <item>Cancelado</item>
+    </string-array>
+
 </resources>

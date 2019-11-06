@@ -3,7 +3,12 @@ package tp.sendmeal;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
@@ -12,6 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -19,6 +25,8 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +37,14 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
 
     private GoogleMap mMap;
 
+    private PolylineOptions lineaOpciones= new PolylineOptions();
+    private Polyline linea;
+
     private Spinner spinner;
-    private ArrayAdapter<String> adapter;
+    private ArrayAdapter<CharSequence> adapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps_pedidos);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapPedidos);
@@ -41,35 +52,36 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
 
 
         spinner = (Spinner) findViewById(R.id.spinnerEstados);
-        adapter=new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,lista());
+        adapter = ArrayAdapter.createFromResource(this, R.array.estados_array, android.R.layout.simple_spinner_item);
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
+
     }
 
-public ArrayList<String> lista(){
-
-    ArrayList<String> list = new ArrayList<String>() {{
-        add("Pendiente");
-        add("Enviado");
-        add("Aceptado");
-        add("Rechazado");
-        add("En preparacion");
-        add("En envio");
-        add("Entregado");
-        add("Cancelado");
-        add("TODOS");
-    }};
-    return list;
-}
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         actualizarMapa();
 
-        cargarMarcadores();
+        cargarMarcadores("TODOS");
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                mMap.clear();
+
+                cargarMarcadores(adapterView.getItemAtPosition(i).toString());
+                linea = mMap.addPolyline(lineaOpciones);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        }
+        );
     }
 
     private void actualizarMapa() {
@@ -83,6 +95,7 @@ public ArrayList<String> lista(){
             return;
         }
         mMap.setMyLocationEnabled(true);
+
     }
 
     @Override
@@ -100,13 +113,21 @@ public ArrayList<String> lista(){
         }
     }
 
-    public void cargarMarcadores(){
+
+    public void cargarMarcadores(String estado){
 
         List<Pedido> pedidos=listarPedidos();
         BitmapDescriptor bitmapDescriptor;
         String titulo;
+        String informacion;
+        Boolean todos=false;
+
+        lineaOpciones=new PolylineOptions();
+        if(estado.equals("TODOS")) todos=true;
+
 
         for (int i=0;i<pedidos.size();i++){
+            if(estado.equals(pedidos.get(i).getEstadoText()) || todos){
             switch (pedidos.get(i).getEstado()){
                 case 1:
                     bitmapDescriptor = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE);
@@ -135,11 +156,19 @@ public ArrayList<String> lista(){
                 default:
                     throw new IllegalStateException("Unexpected value: " + pedidos.get(i).getEstado());
             }
-            titulo="id:"+pedidos.get(i).getId()+" "+pedidos.get(i).getEstadoText()+" percio";
+
+            titulo=pedidos.get(i).getEstadoText();
+            informacion="id:"+pedidos.get(i).getId()+" Precio:";
+            LatLng coordenadas= new LatLng(pedidos.get(i).getLat(),pedidos.get(i).getLng());
             mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(pedidos.get(i).getLat(),pedidos.get(i).getLng()))
+                    .position(coordenadas)
                     .title(titulo)
+                    .snippet(informacion)
                     .icon(bitmapDescriptor));
+            if(pedidos.get(i).getEstadoText().equals("En envio")){
+                lineaOpciones.add(coordenadas);
+            }
+            }
         }
         
     }
@@ -201,6 +230,13 @@ public ArrayList<String> lista(){
         p8.setLat(-32.11);
         p8.setLng(-60.74782);
         pedidos.add(p8);
+
+        Pedido p9 =new Pedido();
+        p9.setEstado(6);
+        p9.setId(9);
+        p9.setLat(-30.1);
+        p9.setLng(-62.582);
+        pedidos.add(p9);
 
         return pedidos;
     }
