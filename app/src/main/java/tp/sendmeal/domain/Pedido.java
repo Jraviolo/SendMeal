@@ -24,6 +24,7 @@ public class Pedido {
     private Integer estado;
     private Double lat;
     private Double lng;
+    private String tokenPush;
 
     @Ignore
     private List<ItemsPedido> items;
