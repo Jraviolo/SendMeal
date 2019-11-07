@@ -1,14 +1,6 @@
 {
   "platos": [
     {
-      "calorias": 444,
-      "descripcion": "2",
-      "idPlato": 2,
-      "precio": 311,
-      "titulo": "Hamburguesa 2",
-      "id": 2
-    },
-    {
       "calorias": 222,
       "descripcion": "",
       "idPlato": 3,
@@ -33,13 +25,35 @@
       "id": 6
     },
     {
-      "calorias": 1,
-      "descripcion": "aa",
+      "calorias": 333,
+      "descripcion": "asdfsd",
       "idPlato": 1,
-      "precio": 120,
-      "titulo": "aa",
+      "precio": 333,
+      "titulo": "Hamburguesa",
       "id": 7
     }
   ],
-  "pedidos": []
+  "pedidos": [
+    {
+      "estado": 1,
+      "id": 4,
+      "items": [
+        {
+          "cantidad": 1,
+          "id": 4,
+          "pedidoId": 4,
+          "plato": {
+            "calorias": 123,
+            "descripcion": "jajaja1",
+            "idPlato": 1,
+            "precio": 123,
+            "titulo": "hola ale"
+          },
+          "precioItem": 10
+        }
+      ],
+      "lat": -44.980983650730806,
+      "lng": -69.21037897467615
+    }
+  ]
 }

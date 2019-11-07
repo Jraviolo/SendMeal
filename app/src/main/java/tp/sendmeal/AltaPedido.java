@@ -17,6 +17,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -121,6 +125,15 @@ public class AltaPedido extends AppCompatActivity {
         //pdao.insertItem(item);
         //System.out.println("Insertaste Item con nombre de plato:"+item.getPlato().getTitulo());
         id_pedido=pedidoId;
+
+    /*   FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(AltaPedido.this, new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                String updatedToken = instanceIdResult.getToken();
+                Log.e("Updated token",updatedToken);
+            }
+        });
+*/
     }
 
     public void enviarPedido(){
@@ -161,6 +174,8 @@ public class AltaPedido extends AppCompatActivity {
             btnCrear.setEnabled(true);
         }
     }
+
+
 
 
     //PUEDE FALLAR

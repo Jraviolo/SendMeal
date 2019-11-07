@@ -54,6 +54,9 @@ public class Pedido {
         return estado;
     }
 
+    public String getTokenPush() {return tokenPush; }
+
+    public void setTokenPush(String token){ this.tokenPush = token; }
 
     public String getEstadoText() {
         String stringEstado = new String();

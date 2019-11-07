@@ -10,14 +10,15 @@ public class ComunicacionPush extends FirebaseMessagingService {
 
     @Override
     public void onNewToken(String token){
-        Log.d(TAG, "Refreshed token: "+ token);
 
+        super.onNewToken(token);
+        Log.d(TAG, "Refreshed token: "+ token);
        // sendRegistrationToServer(token);
     }
 
     @Override
     public void onMessageReceived (RemoteMessage remoteMessage){
-      //  super.onMessageReceived(remoteMessage);
+        super.onMessageReceived(remoteMessage);
       //  sendNotification(remoteMessage.getNotification().getBody());
     }
 
