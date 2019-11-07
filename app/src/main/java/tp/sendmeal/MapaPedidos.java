@@ -40,6 +40,8 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
     private PolylineOptions lineaOpciones= new PolylineOptions();
     private Polyline linea;
 
+    private ArrayList<Pedido> pedidos=new ArrayList<>();
+
     private Spinner spinner;
     private ArrayAdapter<CharSequence> adapter;
 
@@ -66,6 +68,7 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
         mMap = googleMap;
         actualizarMapa();
 
+        listarPedidos();
         cargarMarcadores("TODOS");
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -116,7 +119,7 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
 
     public void cargarMarcadores(String estado){
 
-        List<Pedido> pedidos=listarPedidos();
+
         BitmapDescriptor bitmapDescriptor;
         String titulo;
         String informacion;
@@ -173,8 +176,8 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
         
     }
 
-    public List<Pedido>listarPedidos(){
-        List pedidos=new ArrayList();
+    public void listarPedidos(){
+        //ACA TIENE QUE ESTAR EL METODO QUE CARGA LOS PEDIDOS
         Pedido p1 =new Pedido();
         p1.setEstado(1);
         p1.setId(1);
@@ -237,7 +240,5 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
         p9.setLat(-30.1);
         p9.setLng(-62.582);
         pedidos.add(p9);
-
-        return pedidos;
     }
 }
