@@ -35,6 +35,7 @@ import tp.sendmeal.domain.Plato;
 
 public class AltaPedido extends AppCompatActivity {
     private static int CODIGO_UBICACION=123;
+    private static int CODIGO_PLATOS=321;
     private long id_pedido;
     private double latitud;
     private double longitud;
@@ -42,13 +43,15 @@ public class AltaPedido extends AppCompatActivity {
     private Button btnCrear;
     private Button btnEnviar;
     private Button btnUbicacion;
-
+    private Button btnBuscarPlatos;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alta_pedido);
+
+        btnBuscarPlatos=(Button) findViewById(R.id.buttonBuscarPlatos);
 
         btnUbicacion=(Button) findViewById(R.id.buttonUbicacion);
 
@@ -92,6 +95,15 @@ public class AltaPedido extends AppCompatActivity {
             }
         });
 
+        btnBuscarPlatos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent b = new Intent(view.getContext(), BuscarPlato.class);
+                ((Activity) view.getContext()).startActivityForResult(b, CODIGO_PLATOS);
+
+            }
+        });
     }
 
 
@@ -172,6 +184,11 @@ public class AltaPedido extends AppCompatActivity {
             longitud = extras.getDouble("LONGITUD");
             System.out.println(latitud+" "+longitud);
             btnCrear.setEnabled(true);
+        }
+
+        if (requestCode == CODIGO_PLATOS && resultCode == RESULT_OK && data != null) {
+
+            //Aca hay que extraer los platos
         }
     }
 
