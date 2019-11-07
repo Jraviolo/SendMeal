@@ -31,6 +31,22 @@
       "precio": 333,
       "titulo": "Hamburguesa",
       "id": 7
+    },
+    {
+      "calorias": 123,
+      "descripcion": "awefwe",
+      "idPlato": 11,
+      "precio": 123,
+      "titulo": "a",
+      "id": 8
+    },
+    {
+      "calorias": 22,
+      "descripcion": "ddv",
+      "idPlato": 12,
+      "precio": 22,
+      "titulo": "a",
+      "id": 9
     }
   ],
   "pedidos": [
@@ -54,6 +70,20 @@
       ],
       "lat": -44.980983650730806,
       "lng": -69.21037897467615
+    },
+    {
+      "estado": 1,
+      "id": 6,
+      "items": [
+        {
+          "cantidad": 1,
+          "id": 6,
+          "pedidoId": 6,
+          "precioItem": 10
+        }
+      ],
+      "lat": -36.55441866221682,
+      "lng": -61.92757029086352
     }
   ]
 }

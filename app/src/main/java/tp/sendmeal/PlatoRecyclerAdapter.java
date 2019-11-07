@@ -5,9 +5,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ import java.util.List;
 import tp.sendmeal.dao.PlatoRepository;
 import tp.sendmeal.domain.Plato;
 
+import static android.app.Activity.RESULT_OK;
 import static android.app.PendingIntent.getActivity;
 import static androidx.core.app.ActivityCompat.startActivityForResult;
 import static androidx.core.content.ContextCompat.startActivity;
@@ -33,6 +36,7 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
     private Boolean buscar;
 
     public static final int CODIGO_LISTA_PLATO = 100;
+    private static int CODIGO_PLATOS=321;
 
     public PlatoRecyclerAdapter (List<Plato> myDataSet, boolean b){
         mDataSet = myDataSet;
@@ -141,7 +145,31 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
 
         }
         else{
-            //LOGICA BOTON AGREGAR AL PEDIDO
+
+            holder.btnAgregar.setTag(position);
+            holder.btnAgregar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    String indice = view.getTag().toString();
+
+                   // Intent i = new Intent(view.getContext(), AltaPedido.class);
+                    Intent i = new Intent();
+                   // i.putExtra("INDICE", indice);
+                    i.putExtra("ID", plato.getIdPlato());
+                    i.putExtra("NOMBRE", plato.getTitulo());
+                    i.putExtra("DESCRIPCION", plato.getDescripcion());
+                    i.putExtra("CALORIAS", plato.getCalorias());
+                    i.putExtra("PRECIO",plato.getPrecio());
+
+                    //setResult(RESULT_OK,i);
+                   //((Activity) view.getContext()).startActivityForResult(i, CODIGO_PLATOS);
+
+
+                    Log.d("ADAPTER", "Logica boton agregar");
+                }
+            });
+
         }
     }
 

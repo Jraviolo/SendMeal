@@ -45,6 +45,8 @@ public class AltaPedido extends AppCompatActivity {
     private Button btnUbicacion;
     private Button btnBuscarPlatos;
 
+    private List<ItemsPedido> listaItems = new ArrayList<>();;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,18 +119,19 @@ public class AltaPedido extends AppCompatActivity {
         item.setCantidad(1);
 
         Plato plato1 = new Plato();
-        plato1.setPrecio((double)123);
+     /*   plato1.setPrecio((double)123);
         plato1.setTitulo("hola ale");
         plato1.setDescripcion("jajaja1");
         plato1.setCalorias(123);
         plato1.setIdPlato(1);
-
+*/
         item.setPlato(plato1);
         item.setPrecioItem((float)10);
 
         List<ItemsPedido> itemsss=new ArrayList<>();
         itemsss.add(item);
-        pedido.setItems(itemsss);
+        //pedido.setItems(itemsss);
+        pedido.setItems(listaItems);
         PedidoDao pdao= PedidoRepository.getInstance(AltaPedido.this).getPedidoDB().pedidoDao();
         Long pedidoId = pdao.insertPedidoAndItems(pedido);
         //Long pedidoId = pdao.insertPedido(pedido);
@@ -186,9 +189,22 @@ public class AltaPedido extends AppCompatActivity {
             btnCrear.setEnabled(true);
         }
 
-        if (requestCode == CODIGO_PLATOS && resultCode == RESULT_OK && data != null) {
+        if (requestCode == CODIGO_PLATOS  && resultCode == RESULT_OK && data != null) {
+            Log.d("ALTA PEDIDO1", "entro ");
+            Bundle extras2 = data.getExtras();
+            Plato plato = new Plato();
+            plato.setIdPlato(extras2.getInt("ID"));
+            plato.setTitulo(extras2.getString("NOMBRE"));
+            plato.setDescripcion(extras2.getString("DESCRIPCION"));
+            plato.setPrecio(extras2.getDouble("PRECIO"));
+            plato.setCalorias(extras2.getInt("CALORIAS"));
 
-            //Aca hay que extraer los platos
+            ItemsPedido item =new ItemsPedido();
+            item.setCantidad(1);
+            item.setPlato(plato);
+            item.setPrecioItem((float)10);
+Log.d("ALTA PEDIDO2", "plato "+ plato.getTitulo());
+            listaItems.add(item);
         }
     }
 

@@ -31,6 +31,7 @@ import com.google.android.gms.maps.model.PolylineOptions;
 import java.util.ArrayList;
 import java.util.List;
 
+import tp.sendmeal.dao.PedidoRepository;
 import tp.sendmeal.domain.Pedido;
 
 public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback {
@@ -177,7 +178,11 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
     }
 
     public void listarPedidos(){
+
         //ACA TIENE QUE ESTAR EL METODO QUE CARGA LOS PEDIDOS
+
+       // PedidoRepository.getInstance().listaPedidos();
+
         Pedido p1 =new Pedido();
         p1.setEstado(1);
         p1.setId(1);

@@ -15,11 +15,11 @@ import retrofit2.http.Query;
 import tp.sendmeal.domain.Plato;
 
 public interface PlatoRest {
-  //  @GET("platos/")
-   // Call<List<Plato>> buscarPlato(@Query("titulo") String titulo);
+    @GET("platos/")
+    Call<List<Plato>> buscarPlato(@Query("titulo") String titulo);
 
-    @GET("platos/{titulo}")
-     Call<List<Plato>> buscarPlato(@Path("titulo") String titulo);
+   // @GET("platos/{titulo}")
+    // Call<List<Plato>> buscarPlato(@Path("titulo") String titulo);
 
     @GET("platos/")
     Call<List<Plato>> buscarTodos();
