@@ -95,7 +95,13 @@
         android:ems="10"
         android:inputType="number" />
 
-    <Button
+        <Button
+            android:id="@+id/APbtnFoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btnFoto" />
+
+        <Button
         android:id="@+id/APbtnGuardar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

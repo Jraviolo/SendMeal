@@ -5,20 +5,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import tp.sendmeal.dao.PlatoRepository;
 import tp.sendmeal.dao.rest.PlatoRest;
 import tp.sendmeal.domain.Plato;
+
 
 public class AltaPlato extends AppCompatActivity implements View.OnClickListener{
 
@@ -27,13 +31,19 @@ public class AltaPlato extends AppCompatActivity implements View.OnClickListener
     private EditText descripcion;
     private EditText precio;
     private EditText calorias;
+    private ImageView foto;
+
+    static final int REQUEST_IMAGE_CAPTURE=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alta_plato);
         Button btnGuardar = (Button) findViewById(R.id.APbtnGuardar);
+        Button btnFoto = (Button) findViewById(R.id.APbtnFoto);
         btnGuardar.setOnClickListener(this);
+
+
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbarAltaPlato));
         ActionBar actionBar = getSupportActionBar();
@@ -45,6 +55,25 @@ public class AltaPlato extends AppCompatActivity implements View.OnClickListener
         precio = (EditText) findViewById(R.id.APeditPrecio);
         calorias = (EditText) findViewById(R.id.APeditCalorias);
 
+        btnFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                if(i.resolveActivity(getPackageManager())!= null) {
+                    startActivityForResult(i, REQUEST_IMAGE_CAPTURE);
+                }
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            foto.setImageBitmap(imageBitmap);
+        }
     }
 
 

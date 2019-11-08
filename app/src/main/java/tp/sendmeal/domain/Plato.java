@@ -1,5 +1,7 @@
 package tp.sendmeal.domain;
 
+import android.provider.MediaStore;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -13,6 +15,7 @@ public class Plato {
     private String descripcion;
     private Double precio;
     private Integer calorias;
+    //private MediaStore.Images imagen;
 
     public Plato() {
     }

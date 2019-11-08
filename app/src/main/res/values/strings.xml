@@ -42,6 +42,7 @@
     <string name="txtRangoPrecio"> Rango de precios</string>
     <string name="txtPedido"> Pedido </string>
 
+<string name="btnFoto"> Sacar foto</string>
 
     <string-array name="estados_array">
         <item>TODOS</item>
