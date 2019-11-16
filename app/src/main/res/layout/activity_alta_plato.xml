@@ -102,4 +102,6 @@
         android:text="@string/btnGuardarPlato" />
 
     </LinearLayout>
+
+
 </LinearLayout>

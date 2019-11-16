@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -45,7 +47,11 @@ public class AltaPedido extends AppCompatActivity {
     private Button btnUbicacion;
     private Button btnBuscarPlatos;
 
-    private List<ItemsPedido> listaItems = new ArrayList<>();;
+    private List<ItemsPedido> listaItems = new ArrayList<>();
+
+    private RecyclerView mRecyclerView;
+    private ItemPedidoRecyclerAdapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
 
     @Override
@@ -68,6 +74,16 @@ public class AltaPedido extends AppCompatActivity {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbarAltaPedido));
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        probar();
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.CardItems);
+        mRecyclerView.setHasFixedSize(true);
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new ItemPedidoRecyclerAdapter(listaItems);
+        mRecyclerView.setAdapter(mAdapter);
 
 //ACCIONES DE BOTONES
         btnCrear.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +124,22 @@ public class AltaPedido extends AppCompatActivity {
         });
     }
 
+    public void probar(){
+        ItemsPedido item =new ItemsPedido();
+        item.setCantidad(1);
+        Plato plato1 = new Plato();
+        plato1.setTitulo("hola ale");
+        item.setPlato(plato1);
+        listaItems.add(item);
+
+        ItemsPedido item2 =new ItemsPedido();
+        item2.setCantidad(3);
+        Plato plato2 = new Plato();
+        plato2.setTitulo("chau ale");
+        item2.setPlato(plato2);
+        listaItems.add(item2);
+
+    }
 
     public void crearPedido() {
         Pedido pedido =new Pedido();
@@ -203,7 +235,7 @@ public class AltaPedido extends AppCompatActivity {
             item.setCantidad(1);
             item.setPlato(plato);
             item.setPrecioItem((float)10);
-Log.d("ALTA PEDIDO2", "plato "+ plato.getTitulo());
+            Log.d("ALTA PEDIDO2", "plato "+ plato.getTitulo());
             listaItems.add(item);
         }
     }
