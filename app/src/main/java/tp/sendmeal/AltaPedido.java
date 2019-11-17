@@ -165,7 +165,7 @@ public class AltaPedido extends AppCompatActivity {
         String t = pedidoAndItems.getItems().get(0).getPlato().getTitulo();
         System.out.println("El item 0 tiene el nombre de plato"+ t);
         PedidoRepository.getInstance().crearPedido(pedidoAndItems.getPedido(), miHandler);
-
+        showToast("Pedido enviado.");
     }
 
     @Override
