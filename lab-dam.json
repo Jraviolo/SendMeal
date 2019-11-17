@@ -339,6 +339,27 @@
       ],
       "lat": -39.363427851506856,
       "lng": -69.03949912637472
+    },
+    {
+      "estado": 1,
+      "id": 12,
+      "items": [
+        {
+          "cantidad": 5,
+          "id": 9,
+          "pedidoId": 12,
+          "plato": {
+            "calorias": 65,
+            "descripcion": "aa",
+            "idPlato": 5,
+            "precio": 45,
+            "titulo": "Empanada"
+          },
+          "precioItem": 45
+        }
+      ],
+      "lat": -15.991080134965623,
+      "lng": -43.175831995904446
     }
   ]
 }
