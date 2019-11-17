@@ -151,10 +151,12 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
                 @Override
                 public void onClick(View view) {
 
+                    Activity actividad=(Activity) view.getContext();
                     String indice = view.getTag().toString();
-
-                   // Intent i = new Intent(view.getContext(), AltaPedido.class);
                     Intent i = new Intent();
+
+                  // Intent i = new Intent(view.getContext(), AltaPedido.class);
+                   //Intent i = new Intent();
                    // i.putExtra("INDICE", indice);
                     i.putExtra("ID", plato.getIdPlato());
                     i.putExtra("NOMBRE", plato.getTitulo());
@@ -162,7 +164,9 @@ public class PlatoRecyclerAdapter extends RecyclerView.Adapter<PlatoRecyclerAdap
                     i.putExtra("CALORIAS", plato.getCalorias());
                     i.putExtra("PRECIO",plato.getPrecio());
 
-                    //setResult(RESULT_OK,i);
+                    actividad.setResult(RESULT_OK,i);
+                    actividad.finish();
+                   //setResult(RESULT_OK,i);
                    //((Activity) view.getContext()).startActivityForResult(i, CODIGO_PLATOS);
 
 

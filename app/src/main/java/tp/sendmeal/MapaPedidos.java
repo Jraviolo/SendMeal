@@ -162,7 +162,7 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
             }
 
             titulo=pedidos.get(i).getEstadoText();
-            informacion="id:"+pedidos.get(i).getId()+" Precio:";
+            informacion="id:"+pedidos.get(i).getId()+" Precio:$"+pedidos.get(i).getPrecio();
             LatLng coordenadas= new LatLng(pedidos.get(i).getLat(),pedidos.get(i).getLng());
             mMap.addMarker(new MarkerOptions()
                     .position(coordenadas)
@@ -181,8 +181,9 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
 
         //ACA TIENE QUE ESTAR EL METODO QUE CARGA LOS PEDIDOS
 
-       // PedidoRepository.getInstance().listaPedidos();
-
+        pedidos = (ArrayList) PedidoRepository.getInstance().getListaPedidos();
+        System.out.println(pedidos.toString());
+       /*
         Pedido p1 =new Pedido();
         p1.setEstado(1);
         p1.setId(1);
@@ -244,6 +245,6 @@ public class MapaPedidos extends FragmentActivity implements OnMapReadyCallback 
         p9.setId(9);
         p9.setLat(-30.1);
         p9.setLng(-62.582);
-        pedidos.add(p9);
+        pedidos.add(p9);*/
     }
 }

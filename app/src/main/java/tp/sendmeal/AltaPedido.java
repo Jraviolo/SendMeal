@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -45,7 +47,11 @@ public class AltaPedido extends AppCompatActivity {
     private Button btnUbicacion;
     private Button btnBuscarPlatos;
 
-    private List<ItemsPedido> listaItems = new ArrayList<>();;
+    private List<ItemsPedido> listaItems = new ArrayList<>();
+
+    private RecyclerView mRecyclerView;
+    private ItemPedidoRecyclerAdapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
 
     @Override
@@ -69,14 +75,28 @@ public class AltaPedido extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.CardItems);
+        mRecyclerView.setHasFixedSize(true);
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new ItemPedidoRecyclerAdapter(listaItems);
+        mRecyclerView.setAdapter(mAdapter);
+
 //ACCIONES DE BOTONES
         btnCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                crearPedido();
-                btnUbicacion.setEnabled(false);
-                btnEnviar.setEnabled(true);
-                btnCrear.setEnabled(false);
+                if (listaItems.isEmpty()) {
+                    showToast("Agregue un plato");
+                }
+                else {
+                    crearPedido();
+                    btnUbicacion.setEnabled(false);
+                    btnEnviar.setEnabled(true);
+                    btnCrear.setEnabled(false);
+                }
             }
         });
 
@@ -108,37 +128,18 @@ public class AltaPedido extends AppCompatActivity {
         });
     }
 
-
     public void crearPedido() {
+
         Pedido pedido =new Pedido();
         pedido.setEstado(1);
         pedido.setLat(latitud);
         pedido.setLng(longitud);
 
-        ItemsPedido item =new ItemsPedido();
-        item.setCantidad(1);
-
-        Plato plato1 = new Plato();
-     /*   plato1.setPrecio((double)123);
-        plato1.setTitulo("hola ale");
-        plato1.setDescripcion("jajaja1");
-        plato1.setCalorias(123);
-        plato1.setIdPlato(1);
-*/
-        item.setPlato(plato1);
-        item.setPrecioItem((float)10);
-
-        List<ItemsPedido> itemsss=new ArrayList<>();
-        itemsss.add(item);
         //pedido.setItems(itemsss);
         pedido.setItems(listaItems);
         PedidoDao pdao= PedidoRepository.getInstance(AltaPedido.this).getPedidoDB().pedidoDao();
         Long pedidoId = pdao.insertPedidoAndItems(pedido);
-        //Long pedidoId = pdao.insertPedido(pedido);
-        //System.out.println("Insertaste el pedido con el id:"+pedidoId);
-        //item.setPedidoId(pedidoId);
-        //pdao.insertItem(item);
-        //System.out.println("Insertaste Item con nombre de plato:"+item.getPlato().getTitulo());
+
         id_pedido=pedidoId;
 
     /*   FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(AltaPedido.this, new OnSuccessListener<InstanceIdResult>() {
@@ -149,6 +150,7 @@ public class AltaPedido extends AppCompatActivity {
             }
         });
 */
+
     }
 
     public void enviarPedido(){
@@ -163,6 +165,7 @@ public class AltaPedido extends AppCompatActivity {
         String t = pedidoAndItems.getItems().get(0).getPlato().getTitulo();
         System.out.println("El item 0 tiene el nombre de plato"+ t);
         PedidoRepository.getInstance().crearPedido(pedidoAndItems.getPedido(), miHandler);
+
     }
 
     @Override
@@ -202,13 +205,18 @@ public class AltaPedido extends AppCompatActivity {
             ItemsPedido item =new ItemsPedido();
             item.setCantidad(1);
             item.setPlato(plato);
-            item.setPrecioItem((float)10);
-Log.d("ALTA PEDIDO2", "plato "+ plato.getTitulo());
+            item.setPrecioItem(plato.getPrecio());
+
+            Log.d("ALTA PEDIDO2", "plato "+ plato.getTitulo());
             listaItems.add(item);
+            mAdapter.notifyDataSetChanged();
         }
     }
 
-
+    public void showToast(String txtToast){
+        Toast toast1 = Toast.makeText(getApplicationContext(),txtToast, Toast.LENGTH_SHORT);
+        toast1.show();
+    }
 
 
     //PUEDE FALLAR

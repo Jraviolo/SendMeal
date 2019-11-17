@@ -84,7 +84,6 @@ public class EditarPlato extends AppCompatActivity implements View.OnClickListen
             plato.setPrecio(Double.parseDouble(precio.getText().toString()));
             plato.setCalorias(Integer.parseInt(calorias.getText().toString()));
 
-            //FALTA VOLVER
 
             Intent i = new Intent();
             setResult(RESULT_OK,i);

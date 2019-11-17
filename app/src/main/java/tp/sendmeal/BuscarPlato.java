@@ -206,7 +206,7 @@ public class BuscarPlato extends AppCompatActivity implements View.OnClickListen
         Log.d("ONCLICK buscar", "Nombre plato: "+nombrePlato);
         //HACER LOGICA BUSQUEDA
         listaP = PlatoRepository.getInstance().buscarPlato(nombrePlato,miHandler);
-        //mAdapter.notifyDataSetChanged();
+
         mRecyclerView = (RecyclerView) findViewById(R.id.CardRecycler);
         mRecyclerView.setHasFixedSize(true);
 
@@ -215,7 +215,7 @@ public class BuscarPlato extends AppCompatActivity implements View.OnClickListen
         mAdapter = new PlatoRecyclerAdapter(listaP,true);
         mRecyclerView.setAdapter(mAdapter);
 
-
+        //mAdapter.notifyDataSetChanged();
     }
 
 
