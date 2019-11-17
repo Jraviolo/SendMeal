@@ -90,11 +90,11 @@ public class PedidoRepository {
     // PERSISTENCIA REST
 
 
-    //public static String _SERVER = "http://10.0.2.2:5000";
+    public static String _SERVER = "http://10.0.2.2:5000";
 
     //ale
     //json-server --watch lab-dam.json --port 5000 --host 192.168.0.8
-    public static String _SERVER = "http://192.168.0.8:5000";
+    //public static String _SERVER = "http://192.168.0.8:5000";
 
     //public static String _SERVER = "http:/192.168.1.102:5000";
     private List<Pedido> listaPedidos;

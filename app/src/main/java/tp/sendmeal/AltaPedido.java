@@ -228,8 +228,8 @@ public class AltaPedido extends AppCompatActivity {
             switch (msg.arg1){
                 case PlatoRepository._ALTA_PLATO:
                 case PlatoRepository._UPDATE_PLATO:
-                    Intent i = new Intent(AltaPedido.this,ListaPlatos.class);
-                    startActivity(i);
+                   // Intent i = new Intent(AltaPedido.this,AltaPedidos.class);
+                   // startActivity(i);
                     break;
             }
         }

@@ -24,13 +24,13 @@ import tp.sendmeal.domain.Plato;
 
 public class PlatoRepository {
     //joc -- cambiar tambien en pedido
-    //public static String _SERVER = "http://10.0.2.2:5000";
+    public static String _SERVER = "http://10.0.2.2:5000";
 
     //public static String _SERVER = "http://192.168.0.1:5000";
 
     //ale
     //json-server --watch lab-dam.json --port 5000 --host 192.168.0.8
-    public static String _SERVER = "http://192.168.0.8:5000";
+    //public static String _SERVER = "http://192.168.0.8:5000";
     private List<Plato> listaPlatos;
 
     public static final int _ALTA_PLATO = 1;

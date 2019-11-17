@@ -305,6 +305,40 @@
       ],
       "lat": -15.842861324127094,
       "lng": -50.49246400594712
+    },
+    {
+      "estado": 1,
+      "id": 11,
+      "items": [
+        {
+          "cantidad": 1,
+          "id": 7,
+          "pedidoId": 11,
+          "plato": {
+            "calorias": 222,
+            "descripcion": "",
+            "idPlato": 3,
+            "precio": 210,
+            "titulo": "Milanesa"
+          },
+          "precioItem": 210
+        },
+        {
+          "cantidad": 1,
+          "id": 8,
+          "pedidoId": 11,
+          "plato": {
+            "calorias": 65,
+            "descripcion": "aa",
+            "idPlato": 5,
+            "precio": 45,
+            "titulo": "Empanada"
+          },
+          "precioItem": 45
+        }
+      ],
+      "lat": -39.363427851506856,
+      "lng": -69.03949912637472
     }
   ]
 }
