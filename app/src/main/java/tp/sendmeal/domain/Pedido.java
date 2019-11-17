@@ -29,6 +29,13 @@ public class Pedido {
     @Ignore
     private List<ItemsPedido> items;
 
+    public double getPrecio(){
+        double precioTotal=0;
+        for(ItemsPedido item:items){
+            precioTotal=precioTotal + item.getPrecioItem();
+        }
+        return precioTotal;
+    }
 
     public Pedido() {
     }
@@ -125,5 +132,11 @@ public class Pedido {
         this.items = items;
     }
 
-
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "estado=" + estado +
+                ", items=" + items.toString() +
+                '}';
+    }
 }

@@ -33,10 +33,11 @@ public class ItemPedidoRecyclerAdapter extends RecyclerView.Adapter<ItemPedidoRe
     }
 
     @Override
-    public void onBindViewHolder(ItemViewHolder holder, final int position) {
+    public void onBindViewHolder(final ItemViewHolder holder, final int position) {
         final ItemsPedido item = mDataSet.get(position);
         holder.nombrePlato.setText(item.getPlato().getTitulo());
         holder.cantidad.setNumber(item.getCantidad().toString());
+        holder.precio.setText("$"+item.getPrecioItem());
 
         //define que elemento del array es
         holder.nombrePlato.setTag(position);
@@ -45,6 +46,7 @@ public class ItemPedidoRecyclerAdapter extends RecyclerView.Adapter<ItemPedidoRe
             public void onValueChange(ElegantNumberButton view, int oldValue, int newValue) {
                 System.out.println("cambio de "+oldValue+" a "+ newValue);
                 mDataSet.get(position).setCantidad(newValue);
+                holder.precio.setText("$"+item.getPrecioItem()*newValue);
             }
         });
 
@@ -61,12 +63,14 @@ public class ItemPedidoRecyclerAdapter extends RecyclerView.Adapter<ItemPedidoRe
 
     public class ItemViewHolder extends RecyclerView.ViewHolder{
         TextView nombrePlato;
+        TextView precio;
         ElegantNumberButton cantidad;
 
 
         ItemViewHolder(View base){
             super(base);
             this.nombrePlato = (TextView) base.findViewById(R.id.FInombre);
+            this.precio=(TextView) base.findViewById(R.id.FIprecio);
             this.cantidad= (ElegantNumberButton) base.findViewById(R.id.FIcantidad);
         }
 

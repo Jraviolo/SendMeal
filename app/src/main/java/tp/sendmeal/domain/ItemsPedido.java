@@ -15,7 +15,7 @@ public class ItemsPedido {
     //@Embedded private Pedido pedido;
     @Embedded private Plato plato;
     private Integer cantidad;
-    private Float precioItem;
+    private Double precioItem;
 
     private long pedidoId;
 
@@ -54,11 +54,19 @@ public class ItemsPedido {
         this.cantidad = cantidad;
     }
 
-    public Float getPrecioItem() {
+    public Double getPrecioItem() {
         return precioItem;
     }
 
-    public void setPrecioItem(Float precioItem) {
+    public void setPrecioItem(Double precioItem) {
         this.precioItem = precioItem;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemsPedido{" +
+                "plato=" + plato.getTitulo() +
+                ", cantidad=" + cantidad +
+                '}';
     }
 }
